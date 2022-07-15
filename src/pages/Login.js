@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {  useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -9,12 +9,29 @@ function Login() {
     password: '',
   });
 
+  useEffect(() => {
+    const getUser = () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (!user) {
+        localStorage.setItem('user', JSON.stringify([]));
+      } 
+    };
+    getUser();
+  }, []);
+
   const handleSaveInput = ({ target }) => {
     const { value, name} = target;
     setUser({ ...user, [name]: value });
   };
 
-  const handleEnterButton = () => {
+  const handleAccessButton = () => {
+    const { email, password } = user;
+    localStorage.setItem('user', JSON.stringify({[email]: {
+      ...[email],
+      email: email,
+      password,
+      data: new Date()
+    }}));
     navigate('/listActions');
   };
  
@@ -43,7 +60,7 @@ function Login() {
       <button
         type="button"
         /* disabled={} */
-        onClick={ handleEnterButton }
+        onClick={ handleAccessButton }
         >
           Acessar
         </button>
