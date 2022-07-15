@@ -14,6 +14,16 @@ function Login() {
         required
       />
       </label>
+      <label htmlFor='password'>
+        <input
+        type='password'
+        id='password'
+        name='password'
+        placeholder='Senha'
+        /* onChange={}, */
+        required
+      />
+      </label>
     </div>
   );
 }
