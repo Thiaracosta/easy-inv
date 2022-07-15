@@ -1,1 +1,1 @@
-# easyinv
+# easyInv
