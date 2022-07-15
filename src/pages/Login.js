@@ -1,10 +1,19 @@
 import React from 'react';
 
 function Login() {
-
+ 
   return (
     <div>
-      <h1>Login</h1>
+      <label htmlFor='email'>
+        <input
+        type='email'
+        id='email'
+        name='email'
+        placeholder='E-mail'
+        /* onChange={}, */
+        required
+      />
+      </label>
     </div>
   );
 }
