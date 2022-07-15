@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Login() {
+
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleSaveInput = ({ target }) => {
+    const { value, name} = target;
+    setUser({ ...user, [name]: value });
+  };
  
   return (
     <div>
@@ -10,7 +20,7 @@ function Login() {
         id='email'
         name='email'
         placeholder='E-mail'
-        /* onChange={}, */
+        onChange={ handleSaveInput }
         required
       />
       </label>
@@ -20,7 +30,7 @@ function Login() {
         id='password'
         name='password'
         placeholder='Senha'
-        /* onChange={}, */
+        onChange={ handleSaveInput }
         required
       />
       </label>
