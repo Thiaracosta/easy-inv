@@ -1,5 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import ListActions from './pages/ListActions';
+import BuyAndSell from './pages/BuyAndSell';
+import Account from './pages/Account';
+import Profile from './pages/Profile';
+import Login from './pages/Login';
+import NotFound from './pages/NotFound';
 import './App.css';
 
 function App() {
