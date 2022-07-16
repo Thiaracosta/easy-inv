@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import invContext from './invContext';
+import stockExchange from '../stockExchangeAPI';
 
 function InvProvider({ children }) {
   const [clients, setClients] = useState([]);
+  const [actions ,  setActions] = useState(stockExchange);
 
   useEffect(() => {
     const getUser = () => {
@@ -16,10 +18,12 @@ function InvProvider({ children }) {
     };
 
     getUser();
-  });
+  }, []);
   
   const contextValue = {
     clients,
+    actions,
+    setActions,
   };
 
   return (
