@@ -10,7 +10,7 @@ function Login() {
     email: '',
     password: '',
   });
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function Login() {
       if (!response) {
         localStorage.setItem('user', JSON.stringify([]));
       }
-      setUsers(response);
+      // setUsers(response);
     };
     getUser();
   }, []);
@@ -31,7 +31,6 @@ function Login() {
   };
 
   const handleAccessButton = () => {
-    console.log('clicou');
     const { email, password } = user;
     /* const emailIsTrue = users.findIndex((item) => email === Object.keys(item)[0]);
     if (emailIsTrue !== -1) {
