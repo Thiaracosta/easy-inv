@@ -8,13 +8,15 @@ function Login() {
     email: '',
     password: '',
   });
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const getUser = () => {
-      const user = JSON.parse(localStorage.getItem('user'));
-      if (!user) {
+      const response = JSON.parse(localStorage.getItem('user'));
+      if (!response) {
         localStorage.setItem('user', JSON.stringify([]));
-      } 
+      }
+      setUsers(response);
     };
     getUser();
   }, []);
@@ -26,10 +28,9 @@ function Login() {
 
   const handleAccessButton = () => {
     const { email, password } = user;
-    localStorage.setItem('user', JSON.stringify({[email]: {
-      ...[email],
+    localStorage.setItem('user', JSON.stringify({...users, [email]: {
       email: email,
-      password,
+      // password,
       data: new Date()
     }}));
     navigate('/listActions');
