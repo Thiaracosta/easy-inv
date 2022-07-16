@@ -9,6 +9,7 @@ function Login() {
     password: '',
   });
   const [users, setUsers] = useState([]);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const getUser = () => {
@@ -24,18 +25,35 @@ function Login() {
   const handleSaveInput = ({ target }) => {
     const { value, name} = target;
     setUser({ ...user, [name]: value });
+    enableAccessButton();
   };
 
   const handleAccessButton = () => {
+    console.log('clicou');
     const { email, password } = user;
-    localStorage.setItem('user', JSON.stringify({...users, [email]: {
+    /* const emailIsTrue = users.findIndex((item) => email === Object.keys(item)[0]);
+    if (emailIsTrue !== -1) {
+      setUsers(users[emailIsTrue] = {email: email,
+        // password,
+        data: new Date()})
+    }
+    console.log(emailIsTrue); */
+    localStorage.setItem('user', JSON.stringify({[email]: {
       email: email,
-      // password,
+      password,
       data: new Date()
-    }}));
+    }}/* , ...users] */));
     navigate('/listActions');
   };
- 
+
+  const enableAccessButton = () => {
+    const { email, password } = user;
+    const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i
+    const MIN_LENGTH = 5;
+    if (regex.test(email) || password.length >= MIN_LENGTH) return setIsVisible(false);
+    return setIsVisible(true)
+  };
+
   return (
     <div>
       <label htmlFor='email'>
@@ -58,13 +76,13 @@ function Login() {
         required
       />
       </label>
-      <button
-        type="button"
-        /* disabled={} */
-        onClick={ handleAccessButton }
-        >
-          Acessar
-        </button>
+        <button
+          type="button"
+          onClick={ handleAccessButton }
+          disabled={ isVisible }
+          >
+            Acessar
+          </button>
     </div>
   );
 }
