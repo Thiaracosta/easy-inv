@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {  useNavigate } from 'react-router-dom';
 import logo from '../logo.svg';
 import './login.css'
@@ -10,19 +10,7 @@ function Login() {
     email: '',
     password: '',
   });
-  // const [users, setUsers] = useState([]);
   const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    const getUser = () => {
-      const response = JSON.parse(localStorage.getItem('user'));
-      if (!response) {
-        localStorage.setItem('user', JSON.stringify([]));
-      }
-      // setUsers(response);
-    };
-    getUser();
-  }, []);
 
   const handleSaveInput = ({ target }) => {
     const { value, name} = target;
@@ -39,11 +27,12 @@ function Login() {
         data: new Date()})
     }
     console.log(emailIsTrue); */
-    localStorage.setItem('user', JSON.stringify({[email]: {
+    localStorage.setItem('user', JSON.stringify({
       email: email,
       password,
+      name:'thiara',
       data: new Date()
-    }}/* , ...users] */));
+    }/* , ...users] */));
     navigate('/listActions');
   };
 

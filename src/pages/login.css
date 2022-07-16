@@ -71,5 +71,5 @@ button {
 }
 
 button:disabled {
-  background-color: aliceblue;
+  background-color: rgb(144, 147, 150);
 }
