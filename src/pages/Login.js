@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {  useNavigate } from 'react-router-dom';
+import logo from '../logo.svg';
+import './login.css'
 
 function Login() {
   const navigate =  useNavigate();
@@ -55,34 +57,46 @@ function Login() {
   };
 
   return (
-    <div>
-      <label htmlFor='email'>
-        <input
-        type='email'
-        id='email'
-        name='email'
-        placeholder='E-mail'
-        onChange={ handleSaveInput }
-        required
-      />
-      </label>
-      <label htmlFor='password'>
-        <input
-        type='password'
-        id='password'
-        name='password'
-        placeholder='Senha'
-        onChange={ handleSaveInput }
-        required
-      />
-      </label>
-        <button
-          type="button"
-          onClick={ handleAccessButton }
-          disabled={ isVisible }
-          >
-            Acessar
+    <div className='container-login'>
+      <div className ='card-input-login'>
+      <div className='input-login'>
+        <img src={ logo } alt='logo' className='img-login'/>
+        </div>
+        <h1>Sing In</h1>
+        <div className='input-login'>
+          <label htmlFor='email'>
+            <input
+            type='email'
+            id='email'
+            name='email'
+            placeholder='E-mail'
+            onChange={ handleSaveInput }
+            required
+          />
+          </label>
+        </div>
+        <div className='input-login'>
+          <label htmlFor='password'>
+            <input
+            type='password'
+            id='password'
+            name='password'
+            placeholder='Senha'
+            onChange={ handleSaveInput }
+            required
+          />
+          </label>
+        </div>
+        <div className='button-login'>
+          <button
+            type="button"
+            onClick={ handleAccessButton }
+            disabled={ isVisible }
+            >
+              Acessar
           </button>
+        </div>
+      </div>
     </div>
   );
 }
