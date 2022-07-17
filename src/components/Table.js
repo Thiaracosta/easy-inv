@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import invContext from '../context/invContext';
+import {  useNavigate } from 'react-router-dom';
 
 function Table(props) {
+  const navigate =  useNavigate();
   const { actions, isVisible, title } = props;
+  const { handleBuyAndSellButton } = useContext(invContext);
+
+  const handleBuyAndSell = (e) => {
+    handleBuyAndSellButton(e);
+    navigate('/buyAndSell');
+  }
 
   return (
     <>
@@ -25,15 +34,15 @@ function Table(props) {
               <td>
                 <button
                   type="button"
-                  value={ item.id }
-                  onClick={ () => this.handleClick(item.id) }
+                  value={ item.company }
+                  onClick={ handleBuyAndSell }
                 >
                   C
                 </button>
                 <button
                   type="button"
-                  value={ item.id }
-                  onClick={ () => this.handleClick(item.id) }
+                  value={ item.company }
+                  onClick={ handleBuyAndSell }
                   disabled={isVisible}
                 >
                   V
