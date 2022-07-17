@@ -4,6 +4,7 @@ import Buttons from '../components/Buttons';
 import invContext from '../context/invContext';
 import Table from '../components/Table';
 import InoutValue from '../components/InputValue';
+import './buyAndSell.css'
 
 function BuyAndSell() {
   const { company, actions } = useContext(invContext);
@@ -28,35 +29,40 @@ function BuyAndSell() {
   }
 
   return (
-    <div>
+    <main>
       <Header/>
-      <h1>Comprar/Vender Ações</h1>
-      <div className='card-table-list'>
-        <Table
-          actions={filterCompany}
-          isVisible={false}
-          isInvisibleButtons={false}
-        />     
-        </div>
-      <div>
+      <h1 className='title-buyAndSell'>Comprar/Vender Ações</h1>
+      <div className='contanier-buyAndSell'>
+        <div className='card-table-buyAndSell'>
+          <Table
+            actions={filterCompany}
+            isVisible={false}
+            isInvisibleButtons={false}
+          />     
+          </div>
+        <div className='card-input-buyAndSell'>
+          <InoutValue
+            type="Number"
+            name="Comprar"
+            hadleValueType={ hadleValueType }
+            className="input-value-buyAndSell"
+            classNameLabel="label-value-buyAndSell label-value-blue"
+            classNameP="p-value-buyAndSell"
+          />
+        
         <InoutValue
-          type="Number"
-          name="Comprar"
-          hadleValueType={ hadleValueType }
-          className="input-value-buyAndSell"
-        />
+            type="Number"
+            name="Vender"
+            hadleValueType={ hadleValueType }
+            className="input-value-buyAndSell"
+            classNameLabel="label-value-buyAndSell label-value-green"
+            classNameP="p-value-buyAndSell"
+          />
+        </div>
+          <Buttons
+            handleTransactionConfirm={ handleTransactionConfirm }/>
       </div>
-      <div>
-      <InoutValue
-          type="Number"
-          name="Vender"
-          hadleValueType={ hadleValueType }
-          className="input-value-buyAndSell"
-        />
-      </div>
-        <Buttons
-          handleTransactionConfirm={ handleTransactionConfirm }/>
-    </div>
+    </main>
   );
 }
 

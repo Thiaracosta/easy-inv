@@ -43,7 +43,7 @@ function Table(props) {
   return (
     <main>
      <div className='container-table'>
-        <table>
+        <table className='table-component'>
           <thead>
             <tr>
               <th>Ação</th>

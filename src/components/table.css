@@ -1,7 +1,6 @@
-/* main {
+main {
   height: 100vh;
-  background-color: #012340;
-} */
+}
 
 .container-table {
   background-color: rgb(230, 233, 236);
@@ -9,6 +8,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+table {
+  width: 100%;
 }
 
 tr th {
@@ -21,7 +24,7 @@ tr td {
   background-color: #c3c8cc;
   border-radius: 5px;
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
 }
  
 .tr-card-btn {
@@ -46,10 +49,4 @@ tr td {
 
 .btn-blue {
   background-color: #0479d9;
-}
-
-@media screen and (max-width: 420px){
-  tr td {
-    font-size: 13px;
-  }
 }

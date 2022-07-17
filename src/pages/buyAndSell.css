@@ -1,0 +1,74 @@
+/* main {
+  height: 100vh;
+} */
+
+.title-buyAndSell {
+  font-size: x-large;
+  text-justify: center;
+  margin: 0;
+  margin-bottom: 20px;
+  padding-bottom: 3px;
+  padding-top: 5px;
+  padding-left: 10px;
+  color: aliceblue;
+  background-color: #012340;
+}
+
+.contanier-buyAndSell {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card-table-buyAndSell {
+  height: 15%;
+  width: 100%;
+}
+
+.card-input-buyAndSell {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.label-value-buyAndSell {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: #012340 solid 1px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.input-value-buyAndSell {
+  width: 60%;
+}
+
+.p-value-buyAndSell {
+  display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  width: 30%;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  padding-left: 10px;
+}
+
+.label-value-blue{
+  background-color: #034159;
+  border: #034159 solid 1px;
+  color:aliceblue;
+}
+
+.label-value-green{
+  background-color: #02735E;
+  border: #139468 solid 1px;
+  color:aliceblue;
+}
