@@ -1,0 +1,18 @@
+main {
+  height: 100vh;
+}
+
+.container-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-header {
+  padding: 0;
+  margin: 15px;
+  font-size: 18px;
+  height: 40px;
+  cursor: pointer;
+  border: #04d939d8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
