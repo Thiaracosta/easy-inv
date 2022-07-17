@@ -20,8 +20,8 @@ function ListActions() {
     <div className='contanier-list'>
       <Header/>
       <div className='contanier-actions-list'>
-    {isVisible &&
-      <div className='contanier-table-list'>
+    {isVisible ?
+      (<div className='contanier-table-list'>
         <h3 className='title-list'>Minhas Ações</h3>
         <div className='card-table-list'>
           <Table
@@ -29,7 +29,12 @@ function ListActions() {
             isVisible={false}
           />
         </div>   
-      </div>
+      </div> ) : (
+        <div className='contanier-table-list'>
+        <h3 className='title-list'>Minhas Ações</h3>
+        <p>Você não possui ações. Que tal investir?</p>
+        </div>
+      )
     }
       <div className='contanier-table-list'>
         <h3 className='title-list'>Lista de Ações</h3>
