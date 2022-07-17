@@ -1,0 +1,63 @@
+main {
+  height: 100vh;
+  background-color: #012340;
+}
+
+.title-table {
+  font-size: large;
+  text-justify: center;
+  margin: 0;
+  padding-top: 5px;
+  padding-left: 10px;
+  color: aliceblue;
+}
+
+.container-table {
+  background-color: rgb(230, 233, 236);
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+tr th {
+  background-color: #708496;
+  border-radius: 5px;
+  padding: 6px 10px;
+}
+
+tr td {
+  background-color: #c3c8cc;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+}
+ 
+.tr-card-btn {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.bnt-table {
+  text-align: center;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+}
+
+.btn-green {
+  background-color: #04D939;
+}
+
+.btn-blue {
+  background-color: #0479d9;
+}
+
+@media screen and (max-width: 420px){
+  tr td {
+    font-size: 12px;
+  }
+}
