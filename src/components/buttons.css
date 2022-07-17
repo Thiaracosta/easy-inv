@@ -1,0 +1,19 @@
+.card-button-component {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.button-valor-account {
+  width: 40%;
+  padding: 10px;
+  padding-top: 12px;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #04d939;
+  border: #04d939;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #012340;
+}

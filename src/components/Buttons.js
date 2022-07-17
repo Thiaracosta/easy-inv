@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {  useNavigate } from 'react-router-dom';
-
+import './buttons.css'
 
 function Buttons(props) {
   const navigate =  useNavigate();
   const { handleTransactionConfirm } = props;
 
   return (
-    <div className='card-button-account'>
+    <div className='card-button-component'>
     <button
       type="button"
       onClick={() => navigate('/listActions')}
