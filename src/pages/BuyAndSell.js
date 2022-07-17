@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import {  useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Buttons from '../components/Buttons';
 import invContext from '../context/invContext';
@@ -7,6 +8,7 @@ import InoutValue from '../components/InputValue';
 import './buyAndSell.css'
 
 function BuyAndSell() {
+  const navigate =  useNavigate();
   const { company, actions } = useContext(invContext);
   const [filterCompany, setFilterCompany] = useState([]);
   const [transaction, setTransaction] = useState({});
@@ -97,35 +99,8 @@ function BuyAndSell() {
       
       setClientAccount(balance);
       alert("Venda feita com sucesso");
-
     }
-
-    console.log(amount);
-    // fazer a conta do valor pago ou vendido
-    /* const amount = 
-    if (type === 'Comprar') {
-      if (value > clientAccount) {
-
-      }
-      const balance = clientAccount + cashValueNumber
-      localStorage.setItem('user', JSON.stringify({ ...response,
-        account: balance,
-      }));
-      setClientAccount(balance);
-      alert("Depósito feito com sucesso")
-    }
-    if (transaction === 'withdrawal') {
-      if(cashValueNumber > clientAccount) {
-        alert("Saldo insuficente")
-      } else {
-        const balance = clientAccount - cashValueNumber;
-        localStorage.setItem('user', JSON.stringify({ ...response,
-          account: balance,
-        }));
-        setClientAccount(balance);
-        alert("Retirada feita com sucesso")
-      }
-    } */
+    navigate('/listActions')
   }
 
   return (
