@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {  useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-// import invContext from '../context/invContext';
 import './account.css'
 
 function Account() {
@@ -76,7 +75,7 @@ function Account() {
 
   return (
     <div className='contanier-account'>
-      <Header/>
+    <Header/>
       <div className='card-h1-account'>
         <p>Saldo em conta:  R${clientAccount.toFixed(2)}</p>
       </div>
@@ -104,21 +103,26 @@ function Account() {
         Retirada
         </label>
       </form>
-      <label>
-        <input
-          type="number"
-          name="setValor"
-          onChange={ handleValueInput }
-          placeholder="Informe o valor"
-        />
-      </label>
-      <div>
+      <div className='card-valor-account'>
+        <label>
+          <input
+            className='input-valor-account'
+            type="number"
+            name="setValor"
+            onChange={ handleValueInput }
+            placeholder="Informe o valor"
+          />
+        </label>
+      </div>
+      <div className='card-button-account'>
         <button
           type="button"
           onClick={() => navigate('/listActions')}
           name="comeBack"
+          className='button-valor-account'
         > Voltar </button>
         <button
+          className='button-valor-account'
           type="button"
           onClick={ handleTransactionConfirm }
           name="confirm"

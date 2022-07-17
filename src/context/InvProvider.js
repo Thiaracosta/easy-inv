@@ -21,9 +21,11 @@ function InvProvider({ children }) {
   }, [setClients]);
 
   const handleBuyAndSellButton = (e) => {
-    setCompany(e.target.value)
-    console.log('company', company);
+    setCompany(e.target.value);
   };
+  
+  
+
 
   
   const contextValue = {
