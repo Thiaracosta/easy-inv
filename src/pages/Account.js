@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {  useNavigate } from 'react-router-dom';
+import Buttons from '../components/Buttons';
 import Header from '../components/Header';
 import './account.css'
 
 function Account() {
-  const navigate =  useNavigate();
   const [transaction, setTransaction] = useState("");
   const [cashValue, setCashValue] = useState();
   const [isVisibleDeposit, setIsVisibleDeposit] = useState("btn-invisible-account");
@@ -114,7 +113,10 @@ function Account() {
           />
         </label>
       </div>
-      <div className='card-button-account'>
+      <Buttons 
+      handleTransactionConfirm={ handleTransactionConfirm }
+      />
+     {/*  <div className='card-button-account'>
         <button
           type="button"
           onClick={() => navigate('/listActions')}
@@ -127,7 +129,7 @@ function Account() {
           onClick={ handleTransactionConfirm }
           name="confirm"
         > Confirmar </button>
-      </div>
+      </div> */}
     </div>
   );
 }
