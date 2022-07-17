@@ -54,7 +54,6 @@ function BuyAndSell() {
           console.log('itemmm', item.company);
           return item.company === filterCompany[0].company
         });
-        console.log('indexxxxxxxxx', myActions);
 
         if(index === -1) {
           console.log('index === -1');
@@ -64,16 +63,15 @@ function BuyAndSell() {
         } else {
           console.log('index');
           const actions = myActions[index];
-          actions.quantity = Number(actions.quantity) + value;
-          console.log('------------------', actions);
-          const actionsBuy = {...actions, quantity: actions.quantity + value}
-
+          actions.quantity = Number(actions.quantity) + Number(value);
+          const atualiza = myActions.filter((item) => item.company !== actions.company)
+          
           localStorage.setItem('user', JSON.stringify({ ...response,
-            account: balance, myActions: [...response.myActions, actionsBuy]
+            account: balance, myActions: [...atualiza, actions],
           }));
         }
         setClientAccount(balance);
-        alert("Compra feito com sucesso");
+        alert("Compra feita com sucesso");
       }
     }
 
