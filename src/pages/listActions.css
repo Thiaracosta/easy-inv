@@ -1,0 +1,47 @@
+
+.contanier-list {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.contanier-actions-list {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.contanier-table-list {
+  height: 40%;
+}
+
+.title-list {
+  font-size: large;
+  text-justify: center;
+  margin: 0;
+  padding-top: 5px;
+  padding-left: 10px;
+  color: aliceblue;
+  background-color: #012340;
+}
+
+.card-table-list {
+  height: 90%;
+  overflow-y: scroll;
+}
+
+.card-btn-table {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.bnt-account-table {
+  width: 100%;
+  border: #04d939d8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: large;
+  font-weight: 600;
+}

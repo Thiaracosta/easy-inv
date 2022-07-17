@@ -6,7 +6,7 @@ import './table.css'
 
 function Table(props) {
   const navigate =  useNavigate();
-  const { actions, isVisible, title } = props;
+  const { actions, isVisible } = props;
   const { handleBuyAndSellButton } = useContext(invContext);
 
   const handleBuyAndSell = (e) => {
@@ -16,7 +16,6 @@ function Table(props) {
 
   return (
     <main>
-    <p className='title-table'>{title}</p>
      <div className='container-table'>
         <table>
           <thead>
@@ -33,7 +32,7 @@ function Table(props) {
                 <td>{ item.company }</td>
                 <td>{ item.quantity }</td>
                 <td>{ item.price }</td>
-                <td className='tr-card-btn'>
+                <td className='tr-card-bt'>
                   <button
                     className='bnt-table btn-green'
                     type="button"
@@ -65,7 +64,6 @@ function Table(props) {
 Table.propTypes = {
   actions:PropTypes.array,
   isVisible:PropTypes.bool,
-  title:PropTypes.string,
 }.isRequired;
 
 export default Table;
