@@ -10,10 +10,20 @@ function BuyAndSell() {
   const { company, actions } = useContext(invContext);
   const [filterCompany, setFilterCompany] = useState([]);
   const [transaction, setTransaction] = useState({});
+  const [myActions, setMyActions] = useState(() => {
+    const response = JSON.parse(localStorage.getItem('user'));
+    return response.myActions;
+  });
+  const [clientAccount, setClientAccount] = useState(() => {
+    const response = JSON.parse(localStorage.getItem('user'));
+    return response.account;
+  });
 
   useEffect(() => {
     const filterCompany = actions.filter((item) => item.company === company)
     setFilterCompany(filterCompany);
+    const response = JSON.parse(localStorage.getItem('user'));
+    setMyActions(response.myActions);
   }, [company, actions]);
 
   const hadleValueType = (e) => {
@@ -25,7 +35,74 @@ function BuyAndSell() {
   }
 
   const handleTransactionConfirm = () => {
-    console.log('passaaqui')
+    const response = JSON.parse(localStorage.getItem('user'));
+    setClientAccount(response.account);
+    setMyActions(response.myActions);
+
+    const valueCompany = Number(filterCompany[0].price);
+    const { type, value } = transaction;
+
+    console.log('------------', filterCompany[0]);
+    const amount = value * valueCompany;
+
+    if (type === "Comprar") {
+      if(amount > clientAccount) {
+        alert("Saldo insuficente")
+      } else {
+        const balance = clientAccount - amount;
+        const index = myActions.findIndex((item) => {
+          console.log('itemmm', item.company);
+          return item.company === filterCompany[0].company
+        });
+        console.log('indexxxxxxxxx', myActions);
+
+        if(index === -1) {
+          console.log('index === -1');
+          localStorage.setItem('user', JSON.stringify({ ...response,
+            account: balance, myActions: [...response.myActions, filterCompany[0]]
+          }));
+        } else {
+          console.log('index');
+          const actions = myActions[index];
+          actions.quantity = Number(actions.quantity) + value;
+          console.log('------------------', actions);
+          const actionsBuy = {...actions, quantity: actions.quantity + value}
+
+          localStorage.setItem('user', JSON.stringify({ ...response,
+            account: balance, myActions: [...response.myActions, actionsBuy]
+          }));
+        }
+        setClientAccount(balance);
+        alert("Compra feito com sucesso");
+      }
+    }
+
+    console.log(amount);
+    // fazer a conta do valor pago ou vendido
+    /* const amount = 
+    if (type === 'Comprar') {
+      if (value > clientAccount) {
+
+      }
+      const balance = clientAccount + cashValueNumber
+      localStorage.setItem('user', JSON.stringify({ ...response,
+        account: balance,
+      }));
+      setClientAccount(balance);
+      alert("Depósito feito com sucesso")
+    }
+    if (transaction === 'withdrawal') {
+      if(cashValueNumber > clientAccount) {
+        alert("Saldo insuficente")
+      } else {
+        const balance = clientAccount - cashValueNumber;
+        localStorage.setItem('user', JSON.stringify({ ...response,
+          account: balance,
+        }));
+        setClientAccount(balance);
+        alert("Retirada feita com sucesso")
+      }
+    } */
   }
 
   return (

@@ -52,7 +52,7 @@
 
 .p-value-buyAndSell {
   display: flex;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   width: 30%;
   align-items: center;
@@ -62,13 +62,13 @@
 }
 
 .label-value-blue{
-  background-color: #034159;
-  border: #034159 solid 1px;
-  color:aliceblue;
+  background-color: #3793df;
+  border: #3793df solid 1px;
+  color:#012340;
 }
 
 .label-value-green{
-  background-color: #02735E;
-  border: #139468 solid 1px;
-  color:aliceblue;
+  background-color: #10be3cb0;
+  border: #10be3cb0 solid 1px;
+  color:#012340;
 }

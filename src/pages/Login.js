@@ -32,6 +32,7 @@ function Login() {
       password,
       name:'thiara',
       account: 0,
+      myActions: [],
       data: new Date()
     }/* , ...users] */));
     navigate('/listActions');

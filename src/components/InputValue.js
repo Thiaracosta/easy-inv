@@ -12,6 +12,7 @@ function InoutValue(props) {
         name={name}
         onChange={ hadleValueType }
         className={classNameInput}
+        placeholder="Informe a quantidade de ações"
       />
     </label>
     )
