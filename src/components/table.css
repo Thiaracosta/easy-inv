@@ -1,7 +1,7 @@
-main {
+/* main {
   height: 100vh;
   background-color: #012340;
-}
+} */
 
 .container-table {
   background-color: rgb(230, 233, 236);
@@ -50,6 +50,6 @@ tr td {
 
 @media screen and (max-width: 420px){
   tr td {
-    font-size: 12px;
+    font-size: 13px;
   }
 }

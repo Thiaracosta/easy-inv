@@ -6,12 +6,38 @@ import './table.css'
 
 function Table(props) {
   const navigate =  useNavigate();
-  const { actions, isVisible } = props;
+  const { actions, isVisible, isVisibleButtons } = props;
   const { handleBuyAndSellButton } = useContext(invContext);
 
   const handleBuyAndSell = (e) => {
     handleBuyAndSellButton(e);
     navigate('/buyAndSell');
+  }
+
+  const getButtons = (item) => {
+    if (isVisibleButtons) {
+      return (
+        <td className='tr-card-bt'>
+          <button
+            className='bnt-table btn-green'
+            type="button"
+            value={ item.company }
+            onClick={ handleBuyAndSell }
+          >
+            C
+          </button>
+          <button
+            className='bnt-table btn-blue'
+            type="button"
+            value={ item.company }
+            onClick={ handleBuyAndSell }
+            disabled={isVisible}
+          >
+          V
+          </button>
+        </td>
+      )
+    }
   }
 
   return (
@@ -23,7 +49,9 @@ function Table(props) {
               <th>Ação</th>
               <th>Quant</th>
               <th>Valor</th>
+              {isVisibleButtons &&
               <th>Negociar</th>
+              }
             </tr>
           </thead>
           <tbody>
@@ -32,25 +60,7 @@ function Table(props) {
                 <td>{ item.company }</td>
                 <td>{ item.quantity }</td>
                 <td>{ item.price }</td>
-                <td className='tr-card-bt'>
-                  <button
-                    className='bnt-table btn-green'
-                    type="button"
-                    value={ item.company }
-                    onClick={ handleBuyAndSell }
-                  >
-                    C
-                  </button>
-                  <button
-                    className='bnt-table btn-blue'
-                    type="button"
-                    value={ item.company }
-                    onClick={ handleBuyAndSell }
-                    disabled={isVisible}
-                  >
-                    V
-                  </button>
-                </td>
+               {getButtons(item)}
               </tr>
             ))}
           </tbody>
@@ -64,6 +74,7 @@ function Table(props) {
 Table.propTypes = {
   actions:PropTypes.array,
   isVisible:PropTypes.bool,
+  isVisibleButtons:PropTypes.bool,
 }.isRequired;
 
 export default Table;

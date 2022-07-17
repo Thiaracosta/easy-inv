@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Buttons from '../components/Buttons';
 import invContext from '../context/invContext';
+import Table from '../components/Table';
+import InoutValue from '../components/InputValue';
 
 function BuyAndSell() {
   const { company, actions } = useContext(invContext);
@@ -11,7 +13,7 @@ function BuyAndSell() {
   useEffect(() => {
     const filterCompany = actions.filter((item) => item.company === company)
     setFilterCompany(filterCompany);
-  }, []);
+  }, [company, actions]);
 
   const hadleValueType = (e) => {
     const value = e.target.value;
@@ -29,48 +31,31 @@ function BuyAndSell() {
     <div>
       <Header/>
       <h1>Comprar/Vender Ações</h1>
+      <div className='card-table-list'>
+        <Table
+          actions={filterCompany}
+          isVisible={false}
+          isInvisibleButtons={false}
+        />     
+        </div>
       <div>
-      <table>
-          <thead>
-            <tr>
-              <th>Ação</th>
-              <th>Quant</th>
-              <th>Valor</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filterCompany.map((item) => (
-              <tr key={ item.company }>
-                <td>{ item.company }</td>
-                <td>{ item.quantity }</td>
-                <td>{ item.price }</td>
-              </tr>
-            ))}
-          </tbody>
-      </table>
+        <InoutValue
+          type="Number"
+          name="Comprar"
+          hadleValueType={ hadleValueType }
+          className="input-value-buyAndSell"
+        />
       </div>
       <div>
-        <label>
-        Comprar
-          <input
-            type="Number"
-            name="Comprar"
-            onChange={ hadleValueType }
-          />
-        </label>
+      <InoutValue
+          type="Number"
+          name="Vender"
+          hadleValueType={ hadleValueType }
+          className="input-value-buyAndSell"
+        />
       </div>
-      <div>
-        <label>
-        Vender
-          <input
-            type="Number"
-            name="Vender"
-            onChange={ hadleValueType }
-          />
-        </label>
-      </div>
-              <Buttons
-              handleTransactionConfirm={ handleTransactionConfirm }/>
+        <Buttons
+          handleTransactionConfirm={ handleTransactionConfirm }/>
     </div>
   );
 }

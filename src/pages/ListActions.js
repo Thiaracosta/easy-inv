@@ -8,7 +8,7 @@ import './listActions.css'
 function ListActions() {
   const navigate =  useNavigate();
   const { actions, myActions } = useContext(invContext);
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     if (myActions !== []) {
@@ -27,6 +27,7 @@ function ListActions() {
           <Table
             actions={actions}
             isVisible={false}
+            isVisibleButtons={true}
           />
         </div>   
       </div> ) : (
@@ -42,6 +43,7 @@ function ListActions() {
           <Table
             actions={actions}
             isVisible={true}
+            isVisibleButtons={true}
           />     
         </div>
       </div>
