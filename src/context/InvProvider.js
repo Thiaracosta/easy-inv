@@ -17,9 +17,8 @@ function InvProvider({ children }) {
       }
       setClients(response);
     };
-
     getUser();
-  }, []);
+  }, [setClients]);
 
   const handleBuyAndSellButton = (e) => {
     setCompany(e.target.value)

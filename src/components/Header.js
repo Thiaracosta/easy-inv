@@ -9,12 +9,13 @@ function Header() {
   const [ name, setName ] = useState("Usuário: XPTO")
 
   useEffect(() => {
-    if (clients.name) {
-      setName(clients.name)
+    const response = JSON.parse(localStorage.getItem('user'));
+    if (response.name) {
+      setName(response.name)
     }
   }, [clients]);
 
-  const handleInputChange = ({ target }) => {
+  const handleInputChange = () => {
     navigate('/profile')
   };
 

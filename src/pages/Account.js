@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import {  useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+// import invContext from '../context/invContext';
 import './account.css'
 
 function Account() {
+  const navigate =  useNavigate();
   const [transaction, setTransaction] = useState("");
-  // const [isEmphasis, setIsEmphasisn] = useState();
-  const [isVisibleDeposit, setIsVisibleDeposit] = useState("btn-visible-account");
+  const [cashValue, setCashValue] = useState();
+  const [isVisibleDeposit, setIsVisibleDeposit] = useState("btn-invisible-account");
   const [isVisibleWithdrawal, setIsVisibleWithdrawal] = useState("btn-invisible-account")
+  const [clientAccount, setClientAccount] = useState(0);
+
   useEffect(() => {
+    const response = JSON.parse(localStorage.getItem('user'));
+    setClientAccount(response.account);
+
     if (transaction === 'deposit') {
       setIsVisibleDeposit("btn-visible-account");
       setIsVisibleWithdrawal("btn-invisible-account");
@@ -29,11 +37,48 @@ function Account() {
     }
   }
 
+  const handleValueInput = (e) => {
+    const transaction = e.target.value;
+    setCashValue(transaction)
+  }
+
+  const handleTransactionConfirm = () => {
+    const response = JSON.parse(localStorage.getItem('user'));
+    setClientAccount(response.account);
+    console.log(clientAccount);
+
+    const cashValueNumber = Number(cashValue);
+
+    if( clientAccount === null) {
+      setClientAccount(0);
+    } 
+    if (transaction === 'deposit') {
+      const balance = clientAccount + cashValueNumber
+      localStorage.setItem('user', JSON.stringify({ ...response,
+        account: balance,
+      }));
+      setClientAccount(balance);
+      alert("Depósito feito com sucesso")
+    }
+    if (transaction === 'withdrawal') {
+      if(cashValueNumber > clientAccount) {
+        alert("Saldo insuficente")
+      } else {
+        const balance = clientAccount - cashValueNumber;
+        localStorage.setItem('user', JSON.stringify({ ...response,
+          account: balance,
+        }));
+        setClientAccount(balance);
+        alert("Retirada feita com sucesso")
+      }
+    }
+  }
+
   return (
     <div className='contanier-account'>
       <Header/>
-      <div>
-        <h1>Saldo da conta</h1>
+      <div className='card-h1-account'>
+        <p>Saldo em conta:  R${clientAccount.toFixed(2)}</p>
       </div>
       <form className='form-account'>
         <label htmlFor="deposit" className={`label-account ${isVisibleDeposit}` }>
@@ -58,7 +103,27 @@ function Account() {
           />
         Retirada
         </label>
-      </form> 
+      </form>
+      <label>
+        <input
+          type="number"
+          name="setValor"
+          onChange={ handleValueInput }
+          placeholder="Informe o valor"
+        />
+      </label>
+      <div>
+        <button
+          type="button"
+          onClick={() => navigate('/listActions')}
+          name="comeBack"
+        > Voltar </button>
+        <button
+          type="button"
+          onClick={ handleTransactionConfirm }
+          name="confirm"
+        > Confirmar </button>
+      </div>
     </div>
   );
 }
