@@ -42,7 +42,10 @@ function BuyAndSell() {
     const valueCompany = Number(filterCompany[0].price);
     const { type, value } = transaction;
 
-    console.log('------------', filterCompany[0]);
+    const index = myActions.findIndex((item) => {
+      return item.company === filterCompany[0].company
+    });
+
     const amount = value * valueCompany;
 
     if (type === "Comprar") {
@@ -50,10 +53,6 @@ function BuyAndSell() {
         alert("Saldo insuficente")
       } else {
         const balance = clientAccount - amount;
-        const index = myActions.findIndex((item) => {
-          console.log('itemmm', item.company);
-          return item.company === filterCompany[0].company
-        });
 
         if(index === -1) {
           console.log('index === -1');
@@ -73,6 +72,32 @@ function BuyAndSell() {
         setClientAccount(balance);
         alert("Compra feita com sucesso");
       }
+    }
+
+    if (type === "Vender") {
+      if(index === -1) {
+        return alert("Não possui nenhuma ação dessa companhiar")
+      }
+      if (+myActions[index].quantity < +value) {
+        return alert("Você não possui essa quantidade de ações dessa companhia")
+      }
+      const balance = clientAccount + amount;
+      const actions = myActions[index];
+      actions.quantity = Number(actions.quantity) - Number(value);
+      const atualiza = myActions.filter((item) => item.company !== actions.company)
+      if (actions.quantity === 0) {
+        localStorage.setItem('user', JSON.stringify({ ...response,
+          account: balance, myActions: atualiza,
+        }));
+      } else {
+        localStorage.setItem('user', JSON.stringify({ ...response,
+          account: balance, myActions: [...atualiza, actions],
+        }));
+      }
+      
+      setClientAccount(balance);
+      alert("Venda feita com sucesso");
+
     }
 
     console.log(amount);
