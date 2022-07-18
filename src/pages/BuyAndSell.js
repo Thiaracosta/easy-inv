@@ -58,8 +58,11 @@ function BuyAndSell() {
 
         if(index === -1) {
           console.log('index === -1');
+          const filter = filterCompany[0];
+          console.log("filter", filter);
+          filter.quantity = Number(value);
           localStorage.setItem('user', JSON.stringify({ ...response,
-            account: balance, myActions: [...response.myActions, filterCompany[0]]
+            account: balance, myActions: [...response.myActions, filter]
           }));
         } else {
           console.log('index');
