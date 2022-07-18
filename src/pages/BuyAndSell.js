@@ -51,7 +51,7 @@ function BuyAndSell() {
     const amount = value * valueCompany;
 
     if (type === "Comprar") {
-      if(amount > clientAccount) {
+      if(amount > clientAccount || clientAccount === 0) {
         alert("Saldo insuficente")
       } else {
         const balance = clientAccount - amount;
@@ -81,7 +81,7 @@ function BuyAndSell() {
 
     if (type === "Vender") {
       if(index === -1) {
-        return alert("Não possui nenhuma ação dessa companhiar")
+        return alert("Não possui nenhuma ação dessa companhia")
       }
       if (+myActions[index].quantity < +value) {
         return alert("Você não possui essa quantidade de ações dessa companhia")
