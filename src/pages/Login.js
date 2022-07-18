@@ -52,9 +52,9 @@ function Login() {
 
   const enableAccessButton = () => {
     const { email, password } = user;
-    const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i
+    const regex = /\S+@\S+\.\S+/
     const MIN_LENGTH = 5;
-    if (regex.test(email) || password.length >= MIN_LENGTH) return setIsVisible(false);
+    if (regex.test(email) && password.length >= MIN_LENGTH) return setIsVisible(false);
     return setIsVisible(true)
   };
 
