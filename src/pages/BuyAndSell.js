@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Buttons from '../components/Buttons';
 import invContext from '../context/invContext';
 import Table from '../components/Table';
-import InoutValue from '../components/InputValue';
+import InputValue from '../components/InputValue';
 import './buyAndSell.css'
 
 function BuyAndSell() {
@@ -119,7 +119,7 @@ function BuyAndSell() {
           />     
           </div>
         <div className='card-input-buyAndSell'>
-          <InoutValue
+          <InputValue
             type="Number"
             name="Comprar"
             hadleValueType={ hadleValueType }
@@ -128,7 +128,7 @@ function BuyAndSell() {
             classNameP="p-value-buyAndSell"
           />
         
-        <InoutValue
+        <InputValue
             type="Number"
             name="Vender"
             hadleValueType={ hadleValueType }
