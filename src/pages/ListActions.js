@@ -16,8 +16,8 @@ function ListActions() {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log('user', user.myActions.lenght);
-    if (user.myActions.lenght !== undefined) {
+    console.log('user', user.myActions);
+    if (user.myActions.length > 0) {
       console.log('passa aqui');
       setIsVisible(true);
     }
