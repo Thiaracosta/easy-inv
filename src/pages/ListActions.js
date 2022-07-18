@@ -7,14 +7,20 @@ import './listActions.css'
 
 function ListActions() {
   const navigate =  useNavigate();
-  const { actions, myActions } = useContext(invContext);
-  const [isVisible, setIsVisible] = useState(true);
+  const { actions } = useContext(invContext);
+  const [isVisible, setIsVisible] = useState(false);
+  const [myActions, setMyActions] = useState(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user.myActions
+  });
 
   useEffect(() => {
-    if (myActions !== []) {
-      setIsVisible(false);
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user.myActions !== []) {
+      console.log('passa aqui');
+      setIsVisible(true);
     }
-  }, [myActions]);
+  }, []);
 
   return (
     <div className='contanier-list'>
@@ -25,7 +31,7 @@ function ListActions() {
         <h3 className='title-list'>Minhas Ações</h3>
         <div className='card-table-list'>
           <Table
-            actions={actions}
+            actions={myActions}
             isVisible={false}
             isVisibleButtons={true}
           />
