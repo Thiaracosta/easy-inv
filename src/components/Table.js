@@ -19,7 +19,7 @@ function Table(props) {
       return (
         <td className='tr-card-bt'>
           <button
-            className='bnt-table btn-green'
+            className='bnt-table btn-blue'
             type="button"
             value={ item.company }
             onClick={ handleBuyAndSell }
@@ -27,7 +27,7 @@ function Table(props) {
             C
           </button>
           <button
-            className='bnt-table btn-blue'
+            className='bnt-table btn-green'
             type="button"
             value={ item.company }
             onClick={ handleBuyAndSell }

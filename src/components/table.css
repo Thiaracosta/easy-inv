@@ -44,9 +44,15 @@ tr td {
 }
 
 .btn-green {
-  background-color: #04D939;
+  background-color: #10be3cb0;
+  border: #10be3cb0 solid 1px;
+  color:black;
+  font-weight: 600;
 }
 
 .btn-blue {
-  background-color: #0479d9;
+  background-color: #3793df;
+  border: #3793df solid 1px;
+  color: black;
+  font-weight: 600;
 }
