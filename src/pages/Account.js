@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import {  useNavigate } from 'react-router-dom';
 import Buttons from '../components/Buttons';
 import Header from '../components/Header';
 import './account.css'
 
 function Account() {
+  const navigate =  useNavigate();
   const [transaction, setTransaction] = useState("");
-  const [cashValue, setCashValue] = useState();
+  const [cashValue, setCashValue] = useState(0);
   const [isVisibleDeposit, setIsVisibleDeposit] = useState("btn-invisible-account");
   const [isVisibleWithdrawal, setIsVisibleWithdrawal] = useState("btn-invisible-account")
   const [clientAccount, setClientAccount] = useState(0);
@@ -43,7 +45,10 @@ function Account() {
   const handleTransactionConfirm = () => {
     const response = JSON.parse(localStorage.getItem('user'));
     setClientAccount(response.account);
-    console.log(clientAccount);
+
+    if (cashValue === 0) {
+      return alert("Informe um valor")
+    }
 
     const cashValueNumber = Number(cashValue);
 
@@ -70,6 +75,7 @@ function Account() {
         alert("Retirada feita com sucesso")
       }
     }
+    navigate('/listActions');
   }
 
   return (
@@ -116,20 +122,6 @@ function Account() {
       <Buttons 
       handleTransactionConfirm={ handleTransactionConfirm }
       />
-     {/*  <div className='card-button-account'>
-        <button
-          type="button"
-          onClick={() => navigate('/listActions')}
-          name="comeBack"
-          className='button-valor-account'
-        > Voltar </button>
-        <button
-          className='button-valor-account'
-          type="button"
-          onClick={ handleTransactionConfirm }
-          name="confirm"
-        > Confirmar </button>
-      </div> */}
     </div>
   );
 }

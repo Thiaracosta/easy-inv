@@ -103,7 +103,7 @@ function BuyAndSell() {
       setClientAccount(balance);
       alert("Venda feita com sucesso");
     }
-    navigate('/listActions')
+    navigate('/listActions');
   }
 
   return (
