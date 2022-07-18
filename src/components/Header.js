@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import invContext from '../context/invContext';
+import logo from '../logo.svg';
 import './header.css';
 
 function Header() {
@@ -21,6 +22,7 @@ function Header() {
 
   return (
        <div className="container-header">
+          <img src={ logo } alt='log' className='img-header'/>
         <button
           className='btn-header'
           type="button"

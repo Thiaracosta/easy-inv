@@ -1,11 +1,77 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import {  useNavigate } from 'react-router-dom';
+import Buttons from '../components/Buttons';
+import './profile.css';
 
 function Profile() {
+  const navigate =  useNavigate();
+  const [user, setUser] = useState({
+    email: '',
+    name: '',
+  });
+ // const [isVisible, setIsVisible] = useState(true);
+  const [client, setClient] = useState([]);
+
+  useEffect(() => {
+    const response = JSON.parse(localStorage.getItem('user'));
+    setClient(response);
+    if (response === null) {
+      localStorage.setItem('user', JSON.stringify([]));
+      setUser({email: '', nome: '' })
+    }
+    setUser({email: response.email, name: ''})
+  }, []);
+
+  const handleSaveInput = ({ target }) => {
+    const { value, name} = target;
+    setUser({ ...user, [name]: value });
+  };
+
+  const handleUpdate = () => {
+    const { email, name } = user;
+    if (!email) navigate('/listActions');
+    const response = localStorage.setItem('user', JSON.stringify({ ...client,
+      name, email,
+    }));
+    setClient(response);
+    alert("Atualização feita com sucesso!")
+    navigate('/listActions');
+  }
 
   return (
-    <div>
-      <h1>Profile</h1>
-    </div>
+    <main>
+      <div className='h1-profile'>
+        <h1>Atualize seus dados</h1>
+      </div>
+      <div  className='contanier-profile'>
+        <label htmlFor='email' >
+          <input
+            className='input-profile'
+            type='email'
+            id='email'
+            name='email'
+            value={user.email}
+            placeholder='E-mail'
+            onChange={ handleSaveInput }
+            required
+            />
+        </label>
+        <label htmlFor='name'>
+          <input
+            type='text'
+            id='name'
+            name='name'
+            value={user.name}
+            placeholder='Nome'
+            onChange={ handleSaveInput }
+            required
+            />
+        </label>
+      </div>
+      <Buttons
+        className='button-profile'
+        handleTransactionConfirm={handleUpdate} />
+    </main>
   );
 }
 

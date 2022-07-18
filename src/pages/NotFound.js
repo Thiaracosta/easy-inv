@@ -1,11 +1,13 @@
 import React from 'react';
+import error404 from '../error.svg'
+import './notFound.css'
 
 function NotFound() {
 
   return (
-    <div>
-      <h1>NotFound</h1>
-    </div>
+    <main className='main-notfount'>
+      <img src={ error404 } alt='erro 404' className='img-notFount'/>
+    </main>
   );
 }
 
