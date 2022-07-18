@@ -50,6 +50,10 @@ function Account() {
       return alert("Informe um valor")
     }
 
+    if (transaction === "") {
+      return alert("Marque a transação que quer fazer")
+    }
+
     const cashValueNumber = Number(cashValue);
 
     if( clientAccount === null) {

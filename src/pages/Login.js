@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {  useNavigate } from 'react-router-dom';
 import logo from '../logo.svg';
 import './login.css'
@@ -11,6 +11,19 @@ function Login() {
     password: '',
   });
   const [isVisible, setIsVisible] = useState(true);
+  const [emailUser, setEmailUser] = useState(() => JSON.parse(localStorage.getItem('user')));
+  const [client, setClient] = useState([]);
+
+  useEffect(() => {
+    const response = JSON.parse(localStorage.getItem('user'));
+    setClient(response);
+    if (response === null) {
+      localStorage.setItem('user', JSON.stringify([]));
+      setUser({email: '', password: ''})
+    }
+    setUser({email: response.email, password: ''})
+    setEmailUser(response.email);
+  }, []);
 
   const handleSaveInput = ({ target }) => {
     const { value, name} = target;
@@ -20,21 +33,20 @@ function Login() {
 
   const handleAccessButton = () => {
     const { email, password } = user;
-    /* const emailIsTrue = users.findIndex((item) => email === Object.keys(item)[0]);
-    if (emailIsTrue !== -1) {
-      setUsers(users[emailIsTrue] = {email: email,
-        // password,
-        data: new Date()})
+    if (email === emailUser) {
+      localStorage.setItem('user', JSON.stringify({
+        ...client, date: new Date(),
+      }));
+    } else {
+      localStorage.setItem('user', JSON.stringify({
+        email: email,
+        password,
+        name:'thiara',
+        account: 0,
+        myActions: [],
+        date: new Date()
+      }));
     }
-    console.log(emailIsTrue); */
-    localStorage.setItem('user', JSON.stringify({
-      email: email,
-      password,
-      name:'thiara',
-      account: 0,
-      myActions: [],
-      data: new Date()
-    }/* , ...users] */));
     navigate('/listActions');
   };
 
@@ -59,6 +71,7 @@ function Login() {
             type='email'
             id='email'
             name='email'
+            value={user.email}
             placeholder='E-mail'
             onChange={ handleSaveInput }
             required
