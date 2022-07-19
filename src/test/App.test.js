@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from '../App';
 
@@ -8,9 +9,10 @@ import App from '../App';
 }); */
 
 describe('Testando a página de Login', () => {
-  render(<App/>);
   it('1. Verifica-se existe impresso na tela "Sing In"', () => {
-    const h1Element = screen.getByRole('heading', { level: 1, name: /Sing in/i})
-    expect(h1Element).toBeInTheDocument();
+    render(<App/>);
+    
+   /*  const h1Element = screen.getByRole('button')
+    expect(h1Element).toBeInTheDocument(); */
   })
 })

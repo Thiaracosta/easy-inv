@@ -20,9 +20,10 @@ function Login() {
     if (response === null) {
       localStorage.setItem('user', JSON.stringify([]));
       setUser({email: '', password: ''})
+    } else {
+      setUser({email: response.email, password: ''})
+      setEmailUser(response.email);
     }
-    setUser({email: response.email, password: ''})
-    setEmailUser(response.email);
   }, []);
 
   const handleSaveInput = ({ target }) => {
@@ -59,13 +60,13 @@ function Login() {
   };
 
   return (
-    <div className='container-login'>
-      <div className ='card-input-login'>
-      <div className='input-login'>
-        <img src={ logo } alt='logo' className='img-login'/>
-        </div>
+    <main className='container-login'>
+      <article className ='card-input-login'>
+        <section className='input-login'>
+          <img src={ logo } alt='logo' className='img-login'/>
+        </section>
         <h1>Sing In</h1>
-        <div className='input-login'>
+        <section className='input-login'>
           <label htmlFor='email'>
             <input
             type='email'
@@ -77,8 +78,8 @@ function Login() {
             required
           />
           </label>
-        </div>
-        <div className='input-login'>
+        </section>
+        <section className='input-login'>
           <label htmlFor='password'>
             <input
             type='password'
@@ -89,8 +90,8 @@ function Login() {
             required
           />
           </label>
-        </div>
-        <div className='button-login'>
+        </section>
+        <section className='button-login'>
           <button
             type="button"
             onClick={ handleAccessButton }
@@ -98,9 +99,9 @@ function Login() {
             >
               Acessar
           </button>
-        </div>
-      </div>
-    </div>
+        </section>
+      </article>
+    </main>
   );
 }
 
