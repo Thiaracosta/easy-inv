@@ -20,4 +20,9 @@ describe('Testando a página de Login', () => {
     const inputEmailElement = screen.getByPlaceholderText(/e-mail/i);
     expect(inputEmailElement).toBeInTheDocument();
   })
+  it('3. Verifica-se existe um input Senha', () => {
+    render(<App/>);
+    const inputSenhaElement = screen.getByPlaceholderText(/senha/i);
+    expect(inputSenhaElement).toBeInTheDocument();
+  })
 })
