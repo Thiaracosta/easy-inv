@@ -69,6 +69,7 @@ function Login() {
         <section className='input-login'>
           <label htmlFor='email'>
             <input
+            data-testid="email-input"
             type='email'
             id='email'
             name='email'
