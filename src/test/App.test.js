@@ -25,4 +25,9 @@ describe('Testando a página de Login', () => {
     const inputSenhaElement = screen.getByPlaceholderText(/senha/i);
     expect(inputSenhaElement).toBeInTheDocument();
   })
+  it('4. Verifica-se existe um Botão de Acessar', () => {
+    render(<App/>);
+    const buttonElement = screen.getByRole('button', {name: /acessar/i})
+    expect(buttonElement).toBeInTheDocument();
+  })
 })
