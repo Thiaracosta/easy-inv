@@ -6,8 +6,9 @@ import './table.css'
 
 function Table(props) {
   const history = useHistory();
-  const { actions, isVisible, isVisibleButtons, dataTestid, dataTestidTr } = props;
+  const { isVisible, isVisibleButtons, dataTestid, dataTestidTr, company, actions } = props;
   const { handleBuyAndSellButton } = useContext(invContext);
+
 
   const handleBuyAndSell = (e) => {
     handleBuyAndSellButton(e);

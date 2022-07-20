@@ -113,9 +113,11 @@ function BuyAndSell() {
       <div className='contanier-buyAndSell'>
         <div className='card-table-buyAndSell'>
           <Table
-            actions={filterCompany}
+            actions={ filterCompany }
             isVisible={false}
             isInvisibleButtons={false}
+            dataTestid="company"
+            company={company}
           />     
           </div>
         <div className='card-input-buyAndSell'>
