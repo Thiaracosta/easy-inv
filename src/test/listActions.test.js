@@ -45,19 +45,19 @@ describe('Testando a página de ListActions', () => {
     userEvent.click(buttonContaEl);
 
     const depositoEl = screen.getByLabelText('Depósito');
-    expect(depositoEl).toBeInTheDocument();
-
-    const retiradaEl = screen.getByLabelText('Retirada');
-    expect(retiradaEl).toBeInTheDocument();
-
+    userEvent.click(depositoEl);
     const inputValorEl = screen.getByPlaceholderText(/Informe o valor/i);
-    expect(inputValorEl).toBeInTheDocument();
-
-    const buttonVoltarEl = screen.getByRole('button', {name: 'Voltar'});
-    expect(buttonVoltarEl).toBeInTheDocument();
+    userEvent.type(inputValorEl, '100');
 
     const buttonConfirmarEl = screen.getByRole('button', {name: 'Confirmar'});
-    expect(buttonConfirmarEl).toBeInTheDocument();
+    userEvent.click(buttonConfirmarEl);
 
+    const buttonSaldoEl = screen.getByRole('button', {name: 'Saldo'});
+    expect(buttonSaldoEl).toBeInTheDocument();
+
+    userEvent.click(buttonSaldoEl);
+
+    const buttonValorSaldoEl = screen.getByRole('button', {name: 'R$ 100'});
+    expect(buttonValorSaldoEl).toBeInTheDocument();
   });
 });
