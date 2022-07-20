@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Table from '../components/Table';
 import invContext from '../context/invContext';
-import {  useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './listActions.css'
 
 function ListActions() {
-  const navigate =  useNavigate();
+  const history = useHistory();
   const { actions } = useContext(invContext);
   const [isVisible, setIsVisible] = useState(false);
   const [myActions, setMyActions] = useState(() => {
@@ -59,7 +59,7 @@ function ListActions() {
           <button
             className='bnt-account-table'
             type="button"
-            onClick={ () => navigate('/account')}
+            onClick={ () => history.push('/account')}
           >
             Depósito/Retirada
           </button>

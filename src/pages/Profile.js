@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {  useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Buttons from '../components/Buttons';
 import './profile.css';
 
 function Profile() {
-  const navigate =  useNavigate();
+  const history = useHistory();
   const [user, setUser] = useState({
     email: '',
     name: '',
@@ -29,13 +29,13 @@ function Profile() {
 
   const handleUpdate = () => {
     const { email, name } = user;
-    if (!email) navigate('/listActions');
+    if (!email) history('/listActions');
     const response = localStorage.setItem('user', JSON.stringify({ ...client,
       name, email,
     }));
     setClient(response);
     alert("Atualização feita com sucesso!")
-    navigate('/listActions');
+    history.push('/listActions');
   }
 
   return (

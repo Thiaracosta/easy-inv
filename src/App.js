@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import ListActions from './pages/ListActions';
 import BuyAndSell from './pages/BuyAndSell';
 import Account from './pages/Account';
@@ -12,17 +12,15 @@ import './App.css';
 function App() {
   return (
     <InvProvider>
-      <Router>
-        <Routes>
-          <Route exact path="/listActions" element={ <ListActions/> } />
-          <Route exact path="/buyAndSell" element={ <BuyAndSell/> } />
-          <Route exact path="/account" element={ <Account/> } />
-          <Route exact path="/profile" element={ <Profile/> } />
-          <Route exact path="" element={ <Login/> } />
-          <Route path="/*" element={ <NotFound/> } />
-        </Routes>
-        </Router>
-      </InvProvider>
+      <Switch>
+        <Route exact path="/listActions" component={ ListActions } />
+        <Route exact path="/buyAndSell" component={ BuyAndSell } />
+        <Route exact path="/account" component={ Account } />
+        <Route exact path="/profile" component={ Profile } />
+        <Route exact path="" component={ Login } />
+        <Route path="/*" component={ NotFound } />
+      </Switch>
+    </InvProvider>
   );
 }
 

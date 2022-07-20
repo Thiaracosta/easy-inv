@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {  useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import Buttons from '../components/Buttons';
 import invContext from '../context/invContext';
@@ -8,7 +8,7 @@ import InputValue from '../components/InputValue';
 import './buyAndSell.css'
 
 function BuyAndSell() {
-  const navigate =  useNavigate();
+  const history = useHistory();
   const { company, actions } = useContext(invContext);
   const [filterCompany, setFilterCompany] = useState([]);
   const [transaction, setTransaction] = useState({});
@@ -103,7 +103,7 @@ function BuyAndSell() {
       setClientAccount(balance);
       alert("Venda feita com sucesso");
     }
-    navigate('/listActions');
+    history.push('/listActions');
   }
 
   return (

@@ -1,10 +1,7 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from './renderWithRouter';
-
-
 
 describe('Testando a página de Login', () => {
   

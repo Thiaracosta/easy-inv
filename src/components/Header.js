@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import invContext from '../context/invContext';
 // import logo from '../logo.svg';
 import './header.css';
 
 function Header() {
-  const navigate =  useNavigate();
+  const history = useHistory();
   const { clients } = useContext(invContext);
   const [ name, setName ] = useState("Usuário:XPTO");
   const [user, setUser] = useState([]);
@@ -20,7 +20,7 @@ function Header() {
   }, [clients]);
 
   const handleInputChange = () => {
-    navigate('/profile')
+    history.push('/profile')
   };
 
   const handleBalance = () => {

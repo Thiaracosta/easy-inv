@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {  useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import logo from '../logo.svg';
 import './login.css'
 
 function Login() {
-  const navigate =  useNavigate();
+  const history = useHistory();
 
   const [user, setUser] = useState({
     email: '',
@@ -48,7 +48,7 @@ function Login() {
         date: new Date()
       }));
     }
-    navigate('/listActions');
+    history.push('/listActions');
   };
 
   const enableAccessButton = () => {

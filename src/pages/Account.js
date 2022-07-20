@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {  useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Buttons from '../components/Buttons';
 import Header from '../components/Header';
 import './account.css'
 
 function Account() {
-  const navigate =  useNavigate();
+  const history = useHistory();
   const [transaction, setTransaction] = useState("");
   const [cashValue, setCashValue] = useState(0);
   const [isVisibleDeposit, setIsVisibleDeposit] = useState("btn-invisible-account");
@@ -79,7 +79,7 @@ function Account() {
         alert("Retirada feita com sucesso")
       }
     }
-    navigate('/listActions');
+    history.push('/listActions');
   }
 
   return (

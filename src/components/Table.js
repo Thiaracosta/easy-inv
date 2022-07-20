@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import invContext from '../context/invContext';
-import {  useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './table.css'
 
 function Table(props) {
-  const navigate =  useNavigate();
+  const history = useHistory();
   const { actions, isVisible, isVisibleButtons } = props;
   const { handleBuyAndSellButton } = useContext(invContext);
 
   const handleBuyAndSell = (e) => {
     handleBuyAndSellButton(e);
-    navigate('/buyAndSell');
+    history.push('/buyAndSell');
   }
 
   const getButtons = (item) => {
