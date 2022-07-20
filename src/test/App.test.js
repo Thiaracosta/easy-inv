@@ -1,12 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from '../App';
+import userEvent from '@testing-library/user-event';
+import renderWithRouter from './renderWithRouter';
 
-/* test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-}); */
+
 
 describe('Testando a página de Login', () => {
   
@@ -17,17 +15,74 @@ describe('Testando a página de Login', () => {
   })
   it('2. Verifica-se existe um input Email', () => {
     render(<App/>);
-    const inputEmailElement = screen.getByPlaceholderText(/e-mail/i);
-    expect(inputEmailElement).toBeInTheDocument();
+    const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
+    expect(inputEmailEl).toBeInTheDocument();
   })
   it('3. Verifica-se existe um input Senha', () => {
     render(<App/>);
-    const inputSenhaElement = screen.getByPlaceholderText(/senha/i);
-    expect(inputSenhaElement).toBeInTheDocument();
+    const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
+    expect(inputSenhaEl).toBeInTheDocument();
   })
   it('4. Verifica-se existe um Botão de Acessar', () => {
     render(<App/>);
-    const buttonElement = screen.getByRole('button', {name: /acessar/i})
-    expect(buttonElement).toBeInTheDocument();
+    const buttonEl = screen.getByRole('button', {name: /acessar/i});
+    expect(buttonEl).toBeInTheDocument();
   })
+  it('5. Verifica se o botão fica desabilidato se a senha tiver menos 6 caracters"', () => {
+      render(<App />)
+      const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
+      const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
+      const buttonEl = screen.getByRole('button', {name: /acessar/i});
+  
+      userEvent.type(inputEmailEl, 'teste@teste.com');
+      userEvent.type(inputSenhaEl, '123');
+      expect(buttonEl).toBeDisabled();
+    })
+  it('6. Verifica se o botão fica desabilidato se o email não tiver o formato"', () => {
+    render(<App />)
+    const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
+    const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
+    const buttonEl = screen.getByRole('button', {name: /acessar/i});
+  
+    userEvent.type(inputEmailEl, '@teste.com');
+    userEvent.type(inputSenhaEl, '123456');
+    expect(buttonEl).toBeDisabled();
+  })
+  it('7. Verifica se o botão fica habilitado se dados estiverem corretos', () => {
+    render(<App />)
+    const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
+    const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
+    const buttonEl = screen.getByRole('button', {name: /acessar/i});
+  
+    userEvent.type(inputEmailEl, 'teste@teste.com');
+    userEvent.type(inputSenhaEl, '123456');
+    expect(buttonEl).toBeEnabled();
+  })
+  it('7. Verifica se ao clicar no botão vai para a páginas de Ações', () => {
+    render(<App />)
+    const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
+    const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
+    const buttonEl = screen.getByRole('button', {name: 'Acessar'});
+  
+    userEvent.type(inputEmailEl, 'teste@teste.com');
+    userEvent.type(inputSenhaEl, '123456');
+    userEvent.click(buttonEl)
+
+    const mylistEl = screen.queryByRole('heading', { level: 3, name: 'Minhas Ações'});
+    expect(mylistEl).toBeInTheDocument();
+  })
+
+   /*  fireEvent.change(inputEmailEl, /teste@teste.com/i);
+    fireEvent.change(inputSenhaEl, /1234567/i); */
+    /* console.log(write.innerHtml);
+     */
+    // fireEvent.click(buttonEl)
+    /*  */
+    /* console.log(history); */
+    /* const mylistEl = screen.queryByRole('heading', { level: 3, name: /Minhas Ações/i});
+    expect(mylistEl).toBeInTheDocument(); */
+
+    
+
+    //expect(history.location.pathname).toStrictEqual('/listActions');
 })
