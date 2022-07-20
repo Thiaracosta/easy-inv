@@ -13,21 +13,25 @@ describe('Testando a página de Login', () => {
     const headingEl = screen.getByRole('heading', { level: 1, name: /Sing in/i});
     expect(headingEl).toBeInTheDocument();
   })
+
   it('2. Verifica-se existe um input Email', () => {
     render(<App/>);
     const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
     expect(inputEmailEl).toBeInTheDocument();
   })
+
   it('3. Verifica-se existe um input Senha', () => {
     render(<App/>);
     const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
     expect(inputSenhaEl).toBeInTheDocument();
   })
+
   it('4. Verifica-se existe um Botão de Acessar', () => {
     render(<App/>);
     const buttonEl = screen.getByRole('button', {name: /acessar/i});
     expect(buttonEl).toBeInTheDocument();
   })
+
   it('5. Verifica se o botão fica desabilidato se a senha tiver menos 6 caracters"', () => {
       render(<App />)
       const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
@@ -38,6 +42,7 @@ describe('Testando a página de Login', () => {
       userEvent.type(inputSenhaEl, '123');
       expect(buttonEl).toBeDisabled();
     })
+
   it('6. Verifica se o botão fica desabilidato se o email não tiver o formato"', () => {
     render(<App />)
     const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
@@ -48,6 +53,7 @@ describe('Testando a página de Login', () => {
     userEvent.type(inputSenhaEl, '123456');
     expect(buttonEl).toBeDisabled();
   })
+
   it('7. Verifica se o botão fica habilitado se dados estiverem corretos', () => {
     render(<App />)
     const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
@@ -58,7 +64,8 @@ describe('Testando a página de Login', () => {
     userEvent.type(inputSenhaEl, '123456');
     expect(buttonEl).toBeEnabled();
   })
-  it('7. Verifica se ao clicar no botão vai para a páginas de Ações', () => {
+
+  it('8. Verifica se ao clicar no botão vai para a páginas de Ações', () => {
     render(<App />)
     const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
     const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
@@ -71,18 +78,4 @@ describe('Testando a página de Login', () => {
     const mylistEl = screen.queryByRole('heading', { level: 3, name: 'Minhas Ações'});
     expect(mylistEl).toBeInTheDocument();
   })
-
-   /*  fireEvent.change(inputEmailEl, /teste@teste.com/i);
-    fireEvent.change(inputSenhaEl, /1234567/i); */
-    /* console.log(write.innerHtml);
-     */
-    // fireEvent.click(buttonEl)
-    /*  */
-    /* console.log(history); */
-    /* const mylistEl = screen.queryByRole('heading', { level: 3, name: /Minhas Ações/i});
-    expect(mylistEl).toBeInTheDocument(); */
-
-    
-
-    //expect(history.location.pathname).toStrictEqual('/listActions');
 })
