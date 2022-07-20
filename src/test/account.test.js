@@ -8,8 +8,6 @@ import { mockLocalStorage } from './mockLocalStorage'
 
 const { getItemMock } = mockLocalStorage();
 
-
-
 describe('Testando a página de Account', () => {
  it('1. Teste se existe os componentes na tela', () => {
   getItemMock.mockReturnValue(JSON.stringify({
