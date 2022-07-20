@@ -14,7 +14,10 @@ function Header() {
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('user'));
     setUser(response);
-    if (response.name) {
+    console.log('----------------->', response)
+    if (response === null) {
+      setName("Usuário:XPTO");
+    } else {
       setName(response.name)
     }
   }, [clients]);

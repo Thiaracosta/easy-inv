@@ -1,26 +1,22 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Table from '../components/Table';
-import invContext from '../context/invContext';
 import { useHistory } from 'react-router-dom';
 import './listActions.css'
+import stockExchange from '../stockExchangeAPI';
 
 function ListActions() {
   const history = useHistory();
-  const { actions } = useContext(invContext);
+  const [actions ,  setActions] = useState(stockExchange);
   const [isVisible, setIsVisible] = useState(false);
-  const [myActions, setMyActions] = useState(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return user.myActions
-  });
+  const [myActions, setMyActions] = useState([]);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    console.log('user', user.myActions);
-    if (user.myActions.length > 0) {
-      console.log('passa aqui');
+    const response = JSON.parse(localStorage.getItem('user'));
+    if (response.myActions.lenght > 0) {
+      setMyActions(response.myActions)
       setIsVisible(true);
-    }
+    }    
   }, []);
 
   return (
@@ -48,7 +44,7 @@ function ListActions() {
         <h3 className='title-list'>Lista de Ações</h3>
         <div className='card-table-list'>
           <Table
-            actions={actions}
+            actions={ actions }
             isVisible={true}
             isVisibleButtons={true}
           />     

@@ -1,36 +1,38 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from '../App';
+import "@testing-library/jest-dom/extend-expect";
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderWithRouter from './renderWithRouter';
+import App from '../App';
 
 describe('Testando a página de Login', () => {
   
   it('1. Verifica-se existe impresso na tela "Sing In"', () => {
-    render(<App/>);
+    renderWithRouter(<App/>);
     const headingEl = screen.getByRole('heading', { level: 1, name: /Sing in/i});
     expect(headingEl).toBeInTheDocument();
   })
 
   it('2. Verifica-se existe um input Email', () => {
-    render(<App/>);
+    renderWithRouter(<App/>);
     const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
     expect(inputEmailEl).toBeInTheDocument();
   })
 
   it('3. Verifica-se existe um input Senha', () => {
-    render(<App/>);
+    renderWithRouter(<App/>);
     const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
     expect(inputSenhaEl).toBeInTheDocument();
   })
 
   it('4. Verifica-se existe um Botão de Acessar', () => {
-    render(<App/>);
+    renderWithRouter(<App/>);
     const buttonEl = screen.getByRole('button', {name: /acessar/i});
     expect(buttonEl).toBeInTheDocument();
   })
 
   it('5. Verifica se o botão fica desabilidato se a senha tiver menos 6 caracters"', () => {
-      render(<App />)
+      renderWithRouter(<App />)
       const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
       const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
       const buttonEl = screen.getByRole('button', {name: /acessar/i});
@@ -41,7 +43,7 @@ describe('Testando a página de Login', () => {
     })
 
   it('6. Verifica se o botão fica desabilidato se o email não tiver o formato"', () => {
-    render(<App />)
+    renderWithRouter(<App />)
     const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
     const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
     const buttonEl = screen.getByRole('button', {name: /acessar/i});
@@ -52,7 +54,7 @@ describe('Testando a página de Login', () => {
   })
 
   it('7. Verifica se o botão fica habilitado se dados estiverem corretos', () => {
-    render(<App />)
+    renderWithRouter(<App />)
     const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
     const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
     const buttonEl = screen.getByRole('button', {name: /acessar/i});
@@ -63,7 +65,7 @@ describe('Testando a página de Login', () => {
   })
 
   it('8. Verifica se ao clicar no botão vai para a páginas de Ações', () => {
-    render(<App />)
+    renderWithRouter(<App />)
     const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
     const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
     const buttonEl = screen.getByRole('button', {name: 'Acessar'});
