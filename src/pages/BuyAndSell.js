@@ -22,10 +22,10 @@ function BuyAndSell() {
   });
 
   useEffect(() => {
-    const filterCompany = actions.filter((item) => item.company === company)
-    setFilterCompany(filterCompany);
     const response = JSON.parse(localStorage.getItem('user'));
     setMyActions(response.myActions);
+    const filterCompany = myActions.filter((item) => item.company === company)
+    setFilterCompany(filterCompany);
   }, [company, actions]);
 
   const hadleValueType = (e) => {
@@ -113,11 +113,11 @@ function BuyAndSell() {
       <div className='contanier-buyAndSell'>
         <div className='card-table-buyAndSell'>
           <Table
-            actions={ filterCompany }
             isVisible={false}
             isInvisibleButtons={false}
             dataTestid="company"
-            company={company}
+            company={ company }
+            actions={ filterCompany }
           />     
           </div>
         <div className='card-input-buyAndSell'>

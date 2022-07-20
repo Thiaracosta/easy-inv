@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import invContext from '../context/invContext';
 import { useHistory } from 'react-router-dom';
+import stockExchange from '../stockExchangeAPI';
 import './table.css'
 
 function Table(props) {
@@ -9,6 +10,12 @@ function Table(props) {
   const { isVisible, isVisibleButtons, dataTestid, dataTestidTr, company, actions } = props;
   const { handleBuyAndSellButton } = useContext(invContext);
 
+ /*  useEffect(() => {
+    const filterCompany = actions.filter((item) => item.company === company)
+    setFilterCompany(filterCompany);
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", company);
+   
+  }, [company, actions]); */
 
   const handleBuyAndSell = (e) => {
     handleBuyAndSellButton(e);
@@ -66,9 +73,8 @@ function Table(props) {
                 <td>{ item.company }</td>
                 <td>{ item.quantity }</td>
                 <td>{ item.price }</td>
-               {getButtons(item)}
-              </tr>
-            ))}
+                {getButtons(item)}
+      </tr>))}
           </tbody>
         </table>
       </div>

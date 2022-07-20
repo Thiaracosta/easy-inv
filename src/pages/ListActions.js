@@ -13,7 +13,6 @@ function ListActions() {
 
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('user'));
-    console.log('------------->1', response);
     if (response.myActions !== []) {
       setMyActions(response.myActions)
       setIsVisible(true);
