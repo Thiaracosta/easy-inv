@@ -7,31 +7,8 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 
-describe('Testando a página de ListActions', () => {
+describe('Testando a página de Account', () => {
   it('1. Teste se existe os componentes na tela', () => {
-    renderWithRouter(<App />)
-    const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
-    const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
-    const buttonEl = screen.getByRole('button', {name: 'Acessar'});
-
-    userEvent.type(inputEmailEl, 'teste@teste.com');
-    userEvent.type(inputSenhaEl, '123456');
-    userEvent.click(buttonEl)
-
-    const buttonSaldoEl = screen.getByRole('button', {name: 'Saldo'});
-    expect(buttonSaldoEl).toBeInTheDocument();
-    const buttonUsuarioEl = screen.getByRole('button', {name: 'Usuário:XPTO'});
-    expect(buttonUsuarioEl).toBeInTheDocument();
-    const textEl = screen.queryByText('Você não possui ações. Que tal investir?');
-    expect(textEl).toBeInTheDocument();
-    const mylistaEl = screen.queryByRole('heading', { level: 3, name: 'Minhas Ações'});
-    expect(mylistaEl).toBeInTheDocument();
-    const actionsEl = screen.queryByRole('heading', { level: 3, name: 'Lista de Ações'});
-    expect(actionsEl).toBeInTheDocument();
-    const buttonContaEl = screen.getByRole('button', {name: 'Depósito/Retirada'});
-    expect(buttonContaEl).toBeInTheDocument();
-  });
-  it('2 - Testa Rota de depósito de dinheiro', () => {
     renderWithRouter(<App />)
     const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
     const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
@@ -43,6 +20,15 @@ describe('Testando a página de ListActions', () => {
 
     const buttonContaEl = screen.getByRole('button', {name: 'Depósito/Retirada'});
     userEvent.click(buttonContaEl);
+
+    const buttonSaldoEl = screen.getByRole('button', {name: 'Saldo'});
+    expect(buttonSaldoEl).toBeInTheDocument();
+
+    const textEl = screen.queryByText('Saldo em conta: R$0.00');
+    expect(textEl).toBeInTheDocument();
+
+    const buttonUsuarioEl = screen.getByRole('button', {name: 'Usuário:XPTO'});
+    expect(buttonUsuarioEl).toBeInTheDocument();
 
     const depositoEl = screen.getByLabelText('Depósito');
     expect(depositoEl).toBeInTheDocument();
