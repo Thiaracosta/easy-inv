@@ -44,7 +44,6 @@ describe('Testando a página BuyAndSell', () => {
 
     const tableAction = screen.getByRole('table');
 
-    console.log(tableAction,  '-----------------------------')
     expect(tableAction).toBeInTheDocument()
 
     const company = screen.getByText('Ação')
