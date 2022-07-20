@@ -31,33 +31,4 @@ describe('Testando a página de ListActions', () => {
     const buttonContaEl = screen.getByRole('button', {name: 'Depósito/Retirada'});
     expect(buttonContaEl).toBeInTheDocument();
   });
-  it('2 - Testa Rota de depósito de dinheiro', () => {
-    renderWithRouter(<App />)
-    const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
-    const inputSenhaEl = screen.getByPlaceholderText(/senha/i);
-    const buttonEl = screen.getByRole('button', {name: 'Acessar'});
-
-    userEvent.type(inputEmailEl, 'teste@teste.com');
-    userEvent.type(inputSenhaEl, '123456');
-    userEvent.click(buttonEl);
-
-    const buttonContaEl = screen.getByRole('button', {name: 'Depósito/Retirada'});
-    userEvent.click(buttonContaEl);
-
-    const depositoEl = screen.getByLabelText('Depósito');
-    userEvent.click(depositoEl);
-    const inputValorEl = screen.getByPlaceholderText(/Informe o valor/i);
-    userEvent.type(inputValorEl, '100');
-
-    const buttonConfirmarEl = screen.getByRole('button', {name: 'Confirmar'});
-    userEvent.click(buttonConfirmarEl);
-
-    const buttonSaldoEl = screen.getByRole('button', {name: 'Saldo'});
-    expect(buttonSaldoEl).toBeInTheDocument();
-
-    userEvent.click(buttonSaldoEl);
-
-    const buttonValorSaldoEl = screen.getByRole('button', {name: 'R$ 100'});
-    expect(buttonValorSaldoEl).toBeInTheDocument();
-  });
 });
