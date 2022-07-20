@@ -6,7 +6,7 @@ import './table.css'
 
 function Table(props) {
   const history = useHistory();
-  const { actions, isVisible, isVisibleButtons } = props;
+  const { actions, isVisible, isVisibleButtons, dataTestid, dataTestidTr } = props;
   const { handleBuyAndSellButton } = useContext(invContext);
 
   const handleBuyAndSell = (e) => {
@@ -23,6 +23,7 @@ function Table(props) {
             type="button"
             value={ item.company }
             onClick={ handleBuyAndSell }
+            data-testid={`buttonC-${dataTestidTr}-${item.company}`}
           >
             C
           </button>
@@ -32,6 +33,7 @@ function Table(props) {
             value={ item.company }
             onClick={ handleBuyAndSell }
             disabled={isVisible}
+            data-testid={`buttonV-${dataTestidTr}-${item.company}`}
           >
           V
           </button>
@@ -43,7 +45,10 @@ function Table(props) {
   return (
     <main>
      <div className='container-table'>
-        <table className='table-component'>
+        <table
+          className='table-component'
+          data-testid={ dataTestid }
+        >
           <thead>
             <tr>
               <th>Ação</th>
@@ -56,7 +61,7 @@ function Table(props) {
           </thead>
           <tbody>
             {actions.map((item) => (
-              <tr key={ item.company }>
+              <tr key={ item.company } data-testid={`${dataTestidTr}-${item.company}`}>
                 <td>{ item.company }</td>
                 <td>{ item.quantity }</td>
                 <td>{ item.price }</td>
@@ -75,6 +80,7 @@ Table.propTypes = {
   actions:PropTypes.array,
   isVisible:PropTypes.bool,
   isVisibleButtons:PropTypes.bool,
+  dataTestid:PropTypes.string,
 }.isRequired;
 
 export default Table;

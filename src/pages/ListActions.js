@@ -13,10 +13,10 @@ function ListActions() {
 
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('user'));
-    if (response.myActions.lenght > 0) {
+    if (response.myActions !== []) {
       setMyActions(response.myActions)
       setIsVisible(true);
-    }    
+    }
   }, []);
 
   return (
@@ -28,9 +28,11 @@ function ListActions() {
         <h3 className='title-list'>Minhas Ações</h3>
         <div className='card-table-list'>
           <Table
+            dataTestid='table-myAction'
             actions={myActions}
             isVisible={false}
             isVisibleButtons={true}
+            dataTestidTr='myActions'
           />
         </div>   
       </div> ) : (
@@ -44,9 +46,11 @@ function ListActions() {
         <h3 className='title-list'>Lista de Ações</h3>
         <div className='card-table-list'>
           <Table
+            dataTestid='table-action'
             actions={ actions }
             isVisible={true}
             isVisibleButtons={true}
+            dataTestidTr='actions'
           />     
         </div>
       </div>

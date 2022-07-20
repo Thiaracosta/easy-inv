@@ -76,5 +76,8 @@ describe('Testando a página de Login', () => {
 
     const mylistEl = screen.queryByRole('heading', { level: 3, name: 'Minhas Ações'});
     expect(mylistEl).toBeInTheDocument();
+
+    const textEl = screen.queryByText('Você não possui ações. Que tal investir?');
+    expect(textEl).toBeInTheDocument();
   })
 })
