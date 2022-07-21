@@ -3,13 +3,14 @@ import "@testing-library/jest-dom/extend-expect";
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
-import BuyAndSell from '../pages/BuyAndSell';
 import App from '../App'
 import { mockLocalStorage } from './mockLocalStorage'
 
 const { getItemMock } = mockLocalStorage();
 
 describe('Testando a página BuyAndSell', () => {
+  
+
   it('1. Teste se existe os componentes na tela', () => {
     getItemMock.mockReturnValue(JSON.stringify({
       "account": 0,
@@ -30,11 +31,10 @@ describe('Testando a página BuyAndSell', () => {
       "name": 'Usuário:XPTO',
       "actions": [],
     }));
-
     const { history } = renderWithRouter(<App />);
     history.push('/listActions');
 
-    const btnCAction = screen.getByTestId("buttonC-actions-AMBEV S/A")
+    const btnCAction = screen.getByTestId("buttonC-actions-AZUL")
     expect(btnCAction).toBeInTheDocument();
 
     userEvent.click(btnCAction);
@@ -43,12 +43,20 @@ describe('Testando a página BuyAndSell', () => {
     expect(titleBeS).toBeInTheDocument();
 
     const tableAction = screen.getByRole('table');
+    expect(tableAction).toBeInTheDocument();
 
-    expect(tableAction).toBeInTheDocument()
+    const company = screen.getByText('AZUL')
+    expect(company).toBeInTheDocument();
 
-    const company = screen.getByText('Ação')
-    expect(company).toBeInTheDocument()
-   
+    const textComprar = screen.getByText('Comprar')
+    expect(textComprar).toBeInTheDocument();
+
+    const textVender = screen.getByText('Vender')
+    expect(textVender).toBeInTheDocument();
+
+    const inputEl = screen.getAllByPlaceholderText(/Informe a quantidade de ações/i);
+    expect(inputEl.length).toBe(2);
+  
     });
 
     

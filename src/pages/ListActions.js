@@ -13,6 +13,7 @@ function ListActions() {
 
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('user'));
+    setActions(stockExchange)
     if (response.myActions !== []) {
       setMyActions(response.myActions)
       setIsVisible(true);
