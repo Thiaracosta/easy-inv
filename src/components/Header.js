@@ -1,22 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import invContext from '../context/invContext';
-// import logo from '../logo.svg';
 import './header.css';
 
 function Header() {
   const history = useHistory();
   const { clients } = useContext(invContext);
-  const [ name, setName ] = useState("Usuário:XPTO");
+  const [ name, setName ] = useState("Usuário");
   const [user, setUser] = useState([]);
   const [balance, setBalance] = useState("Saldo")
 
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('user'));
     setUser(response);
-    console.log('----------------->', response)
     if (response === null) {
-      setName("Usuário:XPTO");
+      setName("Usuário");
     } else {
       setName(response.name)
     }
@@ -36,7 +34,6 @@ function Header() {
 
   return (
        <div className="container-header">
-          {/* <img src={ logo } alt='log' className='img-header'/> */}
           <button
           className='btn-header'
           type="button"

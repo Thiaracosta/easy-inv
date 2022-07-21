@@ -42,7 +42,7 @@ function Login() {
       localStorage.setItem('user', JSON.stringify({
         email: email,
         password,
-        name:'Usuário:XPTO',
+        name:'Usuário',
         account: 0,
         myActions: [],
         date: new Date()

@@ -11,7 +11,7 @@ import './buyAndSell.css'
 function BuyAndSell() {
   const history = useHistory();
   const { company, actions  } = useContext(invContext);
-  const [filterCompany, setFilterCompany] = useState([]);
+  const [filterCompany, setFilterCompany] = React.useState([]);
   const [transaction, setTransaction] = useState({});
   const [myActions, setMyActions] = useState(() => {
     const response = JSON.parse(localStorage.getItem('user'));
@@ -28,13 +28,13 @@ function BuyAndSell() {
       
       const filterAction = myActions.filter((item) => item.company === company)
       setFilterCompany(filterAction);
-
       if(filterAction.length === 0) {
         const filter = actions.filter((item) => item.company === company);
         const newAction = [{company: filter[0].company, quantity: 0, price: filter[0].price}]
         setFilterCompany(newAction);
       } else {
         setFilterCompany(filterAction);
+        console.log('debug', filterCompany);
       }
   }, []);
 
@@ -93,7 +93,7 @@ function BuyAndSell() {
         return alert("Não possui nenhuma ação dessa companhia")
       }
       if (+myActions[index].quantity < +value) {
-        return alert("Você não possui essa quantidade de ações dessa companhia")
+        return alert("Você não possui essa quantidade de ações")
       }
       const balance = clientAccount + amount;
       const actions = myActions[index];

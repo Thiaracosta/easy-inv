@@ -1,10 +1,11 @@
 import React from 'react';
-import "@testing-library/jest-dom/extend-expect";
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
-import App from '../App'
+import "@testing-library/jest-dom/extend-expect";
 import { mockLocalStorage } from './mockLocalStorage'
+import App from '../App'
+const reactMock = require('react');
 
 const { getItemMock } = mockLocalStorage();
 
@@ -12,6 +13,16 @@ describe('Testando a página BuyAndSell', () => {
   
 
   it('1. Teste se existe os componentes na tela', () => {
+    const setHookState = (newState) =>
+  jest.fn().mockImplementation(() => [
+    newState,
+    () => {},
+  ]);
+
+  reactMock.useState = setHookState({
+    filterCompany: [{company: 'AMBER', quantity: 0, price: 20}]
+  });
+
     getItemMock.mockReturnValue(JSON.stringify({
       "account": 0,
       "date": "2022-07-20T03:04:30.256Z",
@@ -34,7 +45,7 @@ describe('Testando a página BuyAndSell', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/listActions');
 
-    const btnCAction = screen.getByTestId("buttonC-actions-AZUL")
+    const btnCAction = screen.getByTestId("buttonC-actions-ASSAI")
     expect(btnCAction).toBeInTheDocument();
 
     userEvent.click(btnCAction);
@@ -45,7 +56,7 @@ describe('Testando a página BuyAndSell', () => {
     const tableAction = screen.getByRole('table');
     expect(tableAction).toBeInTheDocument();
 
-    const company = screen.getByText('AZUL')
+    const company = screen.queryByText('ASSAI')
     expect(company).toBeInTheDocument();
 
     const textComprar = screen.getByText('Comprar')

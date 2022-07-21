@@ -14,7 +14,7 @@ function ListActions() {
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('user'));
     setActions(stockExchange)
-    if (response.myActions !== []) {
+    if (response.myActions.length !== 0) {
       setMyActions(response.myActions)
       setIsVisible(true);
     }
@@ -44,7 +44,7 @@ function ListActions() {
       )
     }
       <div className='contanier-table-list'>
-        <h3 className='title-list'>Lista de Ações</h3>
+        <h3 className='title-list'>Disponíveis para investir</h3>
         <div className='card-table-list'>
           <Table
             dataTestid='table-action'
