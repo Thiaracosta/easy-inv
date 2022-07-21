@@ -5,13 +5,12 @@ import Buttons from '../components/Buttons';
 import invContext from '../context/invContext';
 import Table from '../components/Table';
 import InputValue from '../components/InputValue';
-import stockExchange from '../stockExchangeAPI';
+
 import './buyAndSell.css'
 
 function BuyAndSell() {
   const history = useHistory();
-  const { company  } = useContext(invContext);
-  const [mockActions, setMockActions] = useState(stockExchange)
+  const { company, actions  } = useContext(invContext);
   const [filterCompany, setFilterCompany] = useState([]);
   const [transaction, setTransaction] = useState({});
   const [myActions, setMyActions] = useState(() => {
@@ -29,16 +28,13 @@ function BuyAndSell() {
       
       const filterAction = myActions.filter((item) => item.company === company)
       setFilterCompany(filterAction);
-      console.log('---------->>>', filterAction.length);
 
       if(filterAction.length === 0) {
-        console.log('testte', filterAction);
-        const filter = mockActions.filter((item) => item.company === company);
+        const filter = actions.filter((item) => item.company === company);
         const newAction = [{company: filter[0].company, quantity: 0, price: filter[0].price}]
         setFilterCompany(newAction);
       } else {
         setFilterCompany(filterAction);
-        console.log('passaaqui');
       }
   }, []);
 
