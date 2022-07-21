@@ -24,6 +24,7 @@ function BuyAndSell() {
   });
   const [visibleMsg, setVisibleMsg] = useState(false);
   const [textMsg, setTextMsg] = useState("");
+  
   useEffect(() => {
       const response = JSON.parse(localStorage.getItem('user'));
       setFilterCompany(response.myActions);

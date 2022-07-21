@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Buttons from '../components/Buttons';
 import Header from '../components/Header';
+import Message from '../components/Message';
 import './account.css'
 
 function Account() {
@@ -11,6 +12,8 @@ function Account() {
   const [isVisibleDeposit, setIsVisibleDeposit] = useState("btn-invisible-account");
   const [isVisibleWithdrawal, setIsVisibleWithdrawal] = useState("btn-invisible-account")
   const [clientAccount, setClientAccount] = useState(0);
+  const [visibleMsg, setVisibleMsg] = useState(false);
+  const [textMsg, setTextMsg] = useState("");
 
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('user'));
@@ -47,44 +50,51 @@ function Account() {
     setClientAccount(response.account);
 
     if (cashValue === 0) {
-      return alert("Informe um valor")
+      setTextMsg("Informe um valor");
+      return setVisibleMsg(true);
     }
 
     if (transaction === "") {
-      return alert("Marque a transação que quer fazer")
+      setTextMsg("Marque a transação que quer fazer");
+      return setVisibleMsg(true);
     }
-
+    
     const cashValueNumber = Number(cashValue);
 
     if( clientAccount === null) {
       setClientAccount(0);
     } 
+
     if (transaction === 'deposit') {
       const balance = clientAccount + cashValueNumber
       localStorage.setItem('user', JSON.stringify({ ...response,
         account: balance,
       }));
       setClientAccount(balance);
-      alert("Depósito feito com sucesso")
+      setTextMsg("Depósito feito com sucesso");
+      return setVisibleMsg(true);
     }
     if (transaction === 'withdrawal') {
       if(cashValueNumber > clientAccount) {
-        alert("Saldo insuficente")
+        setTextMsg("Saldo insuficente");
+        return setVisibleMsg(true);
       } else {
         const balance = clientAccount - cashValueNumber;
         localStorage.setItem('user', JSON.stringify({ ...response,
           account: balance,
         }));
         setClientAccount(balance);
-        alert("Retirada feita com sucesso")
+        setTextMsg("Retirada feita com sucesso");
+        setVisibleMsg(true);
       }
     }
-    history.push('/listActions');
   }
 
   return (
     <div className='contanier-account'>
     <Header/>
+    {visibleMsg ? <Message message={textMsg} /> : (
+      <div>
       <div className='card-h1-account'>
         <p>Saldo em conta:  R${clientAccount.toFixed(2)}</p>
       </div>
@@ -126,6 +136,8 @@ function Account() {
       <Buttons 
       handleTransactionConfirm={ handleTransactionConfirm }
       />
+      </div>
+    )}
     </div>
   );
 }
