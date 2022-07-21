@@ -73,7 +73,7 @@ describe('Testando a página BuyAndSell', () => {
     userEvent.type(inputEl[0], 1)
     userEvent.click(confirmar)
 
-    const alert = screen.queryByRole('alert', { name: 'Vendaa feita com sucesso'});
+    /* const alert = screen.queryByRole('alert', { name: 'Vendaa feita com sucesso'}); */
 
 
 
