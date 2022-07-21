@@ -117,6 +117,7 @@ function BuyAndSell() {
 
   return (
     <main>
+      {console.log('debug2', filterCompany)}
       <Header/>
         <h1 className='title-buyAndSell'>Comprar/Vender Ações</h1>
         <section className='contanier-buyAndSell'>

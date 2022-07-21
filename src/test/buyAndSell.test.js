@@ -19,9 +19,8 @@ describe('Testando a página BuyAndSell', () => {
     () => {},
   ]);
 
-  reactMock.useState = setHookState({
-    filterCompany: [{company: 'AMBER', quantity: 0, price: 20}]
-  });
+  reactMock.useState = setHookState(
+    [{company: 'AMBER', quantity: 1, price: 20}]);
 
     getItemMock.mockReturnValue(JSON.stringify({
       "account": 0,
@@ -56,7 +55,7 @@ describe('Testando a página BuyAndSell', () => {
     const tableAction = screen.getByRole('table');
     expect(tableAction).toBeInTheDocument();
 
-    const company = screen.queryByText('ASSAI')
+    const company = screen.queryByText('AMBER')
     expect(company).toBeInTheDocument();
 
     const textComprar = screen.getByText('Comprar')
@@ -67,7 +66,17 @@ describe('Testando a página BuyAndSell', () => {
 
     const inputEl = screen.getAllByPlaceholderText(/Informe a quantidade de ações/i);
     expect(inputEl.length).toBe(2);
-  
+
+    const confirmar = screen.queryByRole('button', { name: 'Confirmar'});
+    expect(confirmar).toBeInTheDocument();
+
+    userEvent.type(inputEl[0], 1)
+    userEvent.click(confirmar)
+
+    const alert = screen.queryByRole('alert', { name: 'Vendaa feita com sucesso'});
+
+
+
     });
 
     
