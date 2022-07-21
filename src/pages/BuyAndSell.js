@@ -111,6 +111,7 @@ function BuyAndSell() {
       
       setClientAccount(balance);
       alert("Venda feita com sucesso");
+      
     }
     history.push('/listActions');
   }
