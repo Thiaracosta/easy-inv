@@ -112,11 +112,11 @@ function BuyAndSell() {
       }
       
       setClientAccount(balance);
-      /* setTextMsg("Venda feita com sucesso"); */
+      setTextMsg("Venda feita com sucesso");
       
     }
-    setVisibleMsg(true)
-    /* history.push('/listActions'); */
+    if(textMsg === '') return history.push('/listActions')
+    setVisibleMsg(true);
   }
 
   return (
