@@ -11,7 +11,7 @@ function Message(props) {
     <>
       <button
       type='button'
-      onClick={() => history.push('/buyAndSell')}
+      onClick={() => history.push('/listActions')}
       >
         X
       </button>

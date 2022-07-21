@@ -5,6 +5,7 @@ import Buttons from '../components/Buttons';
 import invContext from '../context/invContext';
 import Table from '../components/Table';
 import InputValue from '../components/InputValue';
+import Message from '../components/Message';
 
 import './buyAndSell.css'
 
@@ -21,7 +22,8 @@ function BuyAndSell() {
     const response = JSON.parse(localStorage.getItem('user'));
     return response.account;
   });
-
+  const [visibleMsg, setVisibleMsg] = useState(false);
+  const [textMsg, setTextMsg] = useState("");
   useEffect(() => {
       const response = JSON.parse(localStorage.getItem('user'));
       setFilterCompany(response.myActions);
@@ -62,7 +64,7 @@ function BuyAndSell() {
 
     if (type === "Comprar") {
       if(amount > clientAccount || clientAccount === 0) {
-        alert("Saldo insuficente")
+        setTextMsg("Saldo insuficente")
       } else {
         const balance = clientAccount - amount;
 
@@ -84,16 +86,16 @@ function BuyAndSell() {
           }));
         }
         setClientAccount(balance);
-        alert("Compra feita com sucesso");
+        setTextMsg("Compra feita com sucesso");
       }
     }
 
     if (type === "Vender") {
       if(index === -1) {
-        return alert("Não possui nenhuma ação dessa companhia")
+        return setTextMsg("Não possui nenhuma ação dessa companhia")
       }
       if (+myActions[index].quantity < +value) {
-        return alert("Você não possui essa quantidade de ações")
+        return setTextMsg("Você não possui essa quantidade de ações")
       }
       const balance = clientAccount + amount;
       const actions = myActions[index];
@@ -110,24 +112,25 @@ function BuyAndSell() {
       }
       
       setClientAccount(balance);
-      alert("Venda feita com sucesso");
+      /* setTextMsg("Venda feita com sucesso"); */
       
     }
-    history.push('/listActions');
+    setVisibleMsg(true)
+    /* history.push('/listActions'); */
   }
 
   return (
     <main>
-      {console.log('debug2', filterCompany)}
       <Header/>
-        <h1 className='title-buyAndSell'>Comprar/Vender Ações</h1>
-        <section className='contanier-buyAndSell'>
+        {visibleMsg ? <Message message={textMsg}/> : (
+          <section className='contanier-buyAndSell'>
+          <h1 className='title-buyAndSell'>Comprar/Vender Ações</h1>
           <div className='card-table-buyAndSell'>
             <Table
               actions={ filterCompany }
               isVisible={false}
               isInvisibleButtons={false}
-            />
+              />
           </div>
           <div className='card-input-buyAndSell'>
             <InputValue
@@ -148,9 +151,10 @@ function BuyAndSell() {
             />
           </div>
             <Buttons
-              handleTransactionConfirm={ handleTransactionConfirm }
+            handleTransactionConfirm={ handleTransactionConfirm }
             />
         </section>
+            )}
     </main>
   );
 }
