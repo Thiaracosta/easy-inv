@@ -24,9 +24,9 @@ function ListActions() {
     <div className='contanier-list'>
       <Header/>
       <div className='contanier-actions-list'>
-    {isVisible ?
-      (<div className='contanier-table-list'>
-        <h3 className='title-list'>Minhas Ações</h3>
+      <div className='contanier-table-list'>
+        <h3 className='title-list'>Minhas Ações:</h3>
+        {isVisible ? (
         <div className='card-table-list'>
           <Table
             dataTestid='table-myAction'
@@ -35,16 +35,12 @@ function ListActions() {
             isVisibleButtons={true}
             dataTestidTr='myActions'
           />
-        </div>   
-      </div> ) : (
-        <div className='contanier-table-list'>
-        <h3 className='title-list'>Minhas Ações</h3>
+        </div> ) : (  
         <p>Você não possui ações. Que tal investir?</p>
-        </div>
-      )
-    }
+        )}
+      </div>
       <div className='contanier-table-list'>
-        <h3 className='title-list'>Disponíveis para investir</h3>
+        <h3 className='title-list'>Disponíveis para investir:</h3>
         <div className='card-table-list'>
           <Table
             dataTestid='table-action'

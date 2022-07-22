@@ -52,8 +52,8 @@ function Table(props) {
           <thead>
             <tr>
               <th>Ação</th>
-              <th>Quant</th>
-              <th>Valor</th>
+              <th>Qtde</th>
+              <th>Valor(R$)</th>
               {isVisibleButtons &&
               <th>Negociar</th>
               }

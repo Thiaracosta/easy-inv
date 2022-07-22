@@ -26,7 +26,7 @@ function Header() {
 
   const handleBalance = () => {
     if (balance === "Saldo") {
-      setBalance(`R$ ${user.account}`);
+      setBalance(`R$ ${(user.account).toFixed(2)}`);
     } else {
       setBalance("Saldo");
     }

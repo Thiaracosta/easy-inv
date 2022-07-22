@@ -123,42 +123,47 @@ function BuyAndSell() {
   }
 
   return (
-    <main>
+    <div className='main-buyAndSell'>
       <Header/>
         {visibleMsg ? <Message message={textMsg}/> : (
           <section className='contanier-buyAndSell'>
-          <h1 className='title-buyAndSell'>Comprar/Vender Ações</h1>
-          <div className='card-table-buyAndSell'>
-            <Table
-              actions={ filterCompany }
-              isVisible={false}
-              isInvisibleButtons={false}
+            <div className='card-table-buyAndSell'>
+              <div>
+                <h1 className='title-buyAndSell-myActions'>Minhas Ações:</h1> 
+                <h2 className='title-buyAndSell'>Comprar/Vender Ações</h2>
+              </div>
+              <Table
+                actions={ filterCompany }
+                isVisible={false}
+                isInvisibleButtons={false}
+                />
+          </div>
+          <div className='contanier-input-buyAndSell'>
+            <div className='card-input-buyAndSell'>
+              <InputValue
+                type="Number"
+                name="Comprar"
+                hadleValueType={ hadleValueType }
+                className="input-value-buyAndSell"
+                classNameLabel="label-value-buyAndSell label-value-blue"
+                classNameP="p-value-buyAndSell"
               />
+              <InputValue
+                type="Number"
+                name="Vender"
+                hadleValueType={ hadleValueType }
+                className="input-value-buyAndSell"
+                classNameLabel="label-value-buyAndSell label-value-green"
+                classNameP="p-value-buyAndSell"
+              />
+            </div>
           </div>
-          <div className='card-input-buyAndSell'>
-            <InputValue
-              type="Number"
-              name="Comprar"
-              hadleValueType={ hadleValueType }
-              className="input-value-buyAndSell"
-              classNameLabel="label-value-buyAndSell label-value-blue"
-              classNameP="p-value-buyAndSell"
-            />
-          <InputValue
-              type="Number"
-              name="Vender"
-              hadleValueType={ hadleValueType }
-              className="input-value-buyAndSell"
-              classNameLabel="label-value-buyAndSell label-value-green"
-              classNameP="p-value-buyAndSell"
-            />
-          </div>
-            <Buttons
-            handleTransactionConfirm={ handleTransactionConfirm }
-            />
         </section>
             )}
-    </main>
+        <Buttons
+          handleTransactionConfirm={ handleTransactionConfirm }
+        />
+    </div>
   );
 }
 
