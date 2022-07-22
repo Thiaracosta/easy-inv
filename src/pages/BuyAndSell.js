@@ -65,19 +65,18 @@ function BuyAndSell() {
 
     if (type === "Comprar") {
       if(amount > clientAccount || clientAccount === 0) {
-        setTextMsg("Saldo insuficente")
+        setTextMsg("Saldo insuficente");
+        return setVisibleMsg(true);
       } else {
         const balance = clientAccount - amount;
 
         if(index === -1) {
-          console.log('index === -1');
           const filter = filterCompany[0];
           filter.quantity = Number(value);
           localStorage.setItem('user', JSON.stringify({ ...response,
             account: balance, myActions: [...response.myActions, filter]
           }));
         } else {
-          console.log('index');
           const actions = myActions[index];
           actions.quantity = Number(actions.quantity) + Number(value);
           const atualiza = myActions.filter((item) => item.company !== actions.company)
@@ -88,15 +87,18 @@ function BuyAndSell() {
         }
         setClientAccount(balance);
         setTextMsg("Compra feita com sucesso");
+        return setVisibleMsg(true);
       }
     }
 
     if (type === "Vender") {
       if(index === -1) {
-        return setTextMsg("Não possui nenhuma ação dessa companhia")
+        setTextMsg("Não possui nenhuma ação dessa companhia");
+        return setVisibleMsg(true);
       }
-      if (+myActions[index].quantity < +value) {
-        return setTextMsg("Você não possui essa quantidade de ações")
+      if (Number(myActions[index].quantity) < Number(value)) {
+        setTextMsg("Você não possui essa quantidade de ações");
+        return setVisibleMsg(true);
       }
       const balance = clientAccount + amount;
       const actions = myActions[index];
@@ -114,10 +116,10 @@ function BuyAndSell() {
       
       setClientAccount(balance);
       setTextMsg("Venda feita com sucesso");
+      return setVisibleMsg(true);
       
     }
     if(textMsg === '') return history.push('/listActions')
-    setVisibleMsg(true);
   }
 
   return (
