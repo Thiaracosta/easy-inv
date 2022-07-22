@@ -11,7 +11,7 @@ import './buyAndSell.css'
 
 function BuyAndSell() {
   const history = useHistory();
-  const { company, actions  } = useContext(invContext);
+  const { actions } = useContext(invContext);
   const [filterCompany, setFilterCompany] = React.useState([]);
   const [transaction, setTransaction] = useState({});
   const [myActions, setMyActions] = useState(() => {
@@ -22,6 +22,10 @@ function BuyAndSell() {
     const response = JSON.parse(localStorage.getItem('user'));
     return response.account;
   });
+  const [company, setCompany ] = useState(() => {
+    const response = JSON.parse(localStorage.getItem('company'));
+    return response;
+  })
   const [visibleMsg, setVisibleMsg] = useState(false);
   const [textMsg, setTextMsg] = useState("");
   
@@ -147,6 +151,7 @@ function BuyAndSell() {
                 className="input-value-buyAndSell"
                 classNameLabel="label-value-buyAndSell label-value-blue"
                 classNameP="p-value-buyAndSell"
+                datatestId="input-buy"
               />
               <InputValue
                 type="Number"
@@ -155,6 +160,7 @@ function BuyAndSell() {
                 className="input-value-buyAndSell"
                 classNameLabel="label-value-buyAndSell label-value-green"
                 classNameP="p-value-buyAndSell"
+                datatestId="input-sell"
               />
             </div>
           </div>

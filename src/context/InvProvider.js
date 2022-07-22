@@ -22,6 +22,7 @@ function InvProvider({ children }) {
 
   const handleBuyAndSellButton = (e) => {
     setCompany(e.target.value);
+    localStorage.setItem('company', JSON.stringify(e.target.value));
   };
   
   

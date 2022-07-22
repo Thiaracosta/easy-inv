@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function InoutValue(props) {
-  const { type, name, hadleValueType, classNameInput, classNameLabel, classNameP} = props;
+  const { type, name, hadleValueType, classNameInput, classNameLabel, classNameP, datatestId} = props;
 
   return (
     <label className={ classNameLabel }>
@@ -13,6 +13,7 @@ function InoutValue(props) {
         onChange={ hadleValueType }
         className={classNameInput}
         placeholder="Informe a quantidade de ações"
+        data-testid={datatestId}
       />
     </label>
     )
