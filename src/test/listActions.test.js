@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import "@testing-library/jest-dom/extend-expect";
 import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import ListActions from '../pages/ListActions'
 import { mockLocalStorage } from './mockLocalStorage'
-import userEvent from '@testing-library/user-event';
 
 const { getItemMock } = mockLocalStorage();
 
