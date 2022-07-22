@@ -6,12 +6,14 @@ import invContext from '../context/invContext';
 import Table from '../components/Table';
 import InputValue from '../components/InputValue';
 import Message from '../components/Message';
+import stockExchange from '../stockExchangeAPI';
 
 import './buyAndSell.css'
 
 function BuyAndSell() {
   const history = useHistory();
-  const { actions } = useContext(invContext);
+  // const { actions } = useContext(invContext);
+  const [actions ,  setActions] = useState(stockExchange);
   const [filterCompany, setFilterCompany] = React.useState([]);
   const [transaction, setTransaction] = useState({});
   const [myActions, setMyActions] = useState(() => {
@@ -23,13 +25,14 @@ function BuyAndSell() {
     return response.account;
   });
   const [company, setCompany ] = useState(() => {
-    const response = JSON.parse(localStorage.getItem('company'));
-    return response;
+    const response = JSON.parse(localStorage.getItem('user'));
+    return response.company;
   })
   const [visibleMsg, setVisibleMsg] = useState(false);
   const [textMsg, setTextMsg] = useState("");
   
   useEffect(() => {
+    console.log('---------------', company);
       const response = JSON.parse(localStorage.getItem('user'));
       setFilterCompany(response.myActions);
       
@@ -133,7 +136,7 @@ function BuyAndSell() {
           <section className='contanier-buyAndSell'>
             <div className='card-table-buyAndSell'>
               <div>
-                <h1 className='title-buyAndSell-myActions'>Minhas Ações:</h1> 
+                <h1 className='title-buyAndSell-myActions' data-testId="h1-buyandSell" >Minhas Ações:</h1> 
                 <h2 className='title-buyAndSell'>Comprar/Vender Ações</h2>
               </div>
               <Table

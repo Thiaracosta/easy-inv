@@ -1,29 +1,20 @@
 import React from 'react';
-import { screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import "@testing-library/jest-dom/extend-expect";
 import { mockLocalStorage } from './mockLocalStorage'
 import InvProvider from '../context/InvProvider';
 import ListActions from '../pages/ListActions';
-//import BuyAndSell from '../pages/BuyAndSell';
+import BuyAndSell from '../pages/BuyAndSell';
 ;
 
 const { getItemMock } = mockLocalStorage();
 
 describe('Testando a página BuyAndSell', () => {
-  /* beforeEach(() => {
-    /* const setHookState = (newState) =>
-     jest.fn().mockImplementation(() => [
-      newState,
-      () => {},
-    ]);
-  
-    reactMock.useState = setHookState(
-      [{company: 'ASSAI', quantity: 1, price: 52.00}]); */
-
-   /*  getItemMock.mockReturnValue(JSON.stringify({
-      "account": 0,
+  beforeEach(() => {
+    getItemMock.mockReturnValue(JSON.stringify({
+      "account": 100,
       "date": "2022-07-20T03:04:30.256Z",
       "email": "thiara@gmail.com",
       "myActions": [{ 
@@ -38,52 +29,22 @@ describe('Testando a página BuyAndSell', () => {
           "quantity": 1,
           "price": 52.00,
         }],
-      "name": 'Usuário:XPTO',
-      "actions": [],
-    }));
-  }) */
+      "name": 'Usuário',
+      "company": 'ASSAI',
+    }))}); 
 
-  /* afterEach(() => {
-    // jest.restoreAllMocks();
+  afterEach(() => {
     localStorage.clear();
-  });  */
+  });
 
   it('1. Teste se existe os componentes na tela', async () => {
-    getItemMock.mockReturnValue(JSON.stringify({
-      "account": 0,
-      "date": "2022-07-20T03:04:30.256Z",
-      "email": "thiara@gmail.com",
-      "myActions": [{ 
-          "company":"AMBEV",
-          "sector": "Alimentos",
-          "quantity": 1,
-          "price": 64.00,
-        },
-        { 
-          "company":"ASSAI",
-          "sector": "Varejo",
-          "quantity": 1,
-          "price": 52.00,
-        }],
-      "name": 'Usuário:XPTO',
-    }));
- const { history } = renderWithRouter(
-    <InvProvider>
-      <ListActions />
-    </InvProvider>)
+    renderWithRouter(<BuyAndSell />);
 
-  const btnCAction = screen.getByTestId("buttonC-actions-ASSAI")
-  expect(btnCAction).toBeInTheDocument();
+    const titleBeS = screen.getByTestId('h1-buyandSell');
+    expect(titleBeS).toBeInTheDocument();
 
-  userEvent.click(btnCAction);
-
-  console.log(history.location.pathname);
-
-  const titleBeS = screen.getByText(/comprar\/vender ações/i)
-  expect(titleBeS).toBeInTheDocument();
-
- /*  const titleBeS = screen.queryByRole('heading', { name: /comprar\/vender ações/i});
-    expect(titleBeS).toBe(true); */
+    const titleh1 = screen.queryByRole('heading', { name: /comprar\/vender ações/i});
+    expect(titleh1).toBeInTheDocument();
 
     const tableAction = screen.getByRole('table');
     expect(tableAction).toBeInTheDocument();
@@ -104,6 +65,41 @@ describe('Testando a página BuyAndSell', () => {
     expect(confirmar).toBeInTheDocument();
     });
 
+    it('2. Verifica se é possível comprar a ação', async () => {
+    renderWithRouter(<BuyAndSell />);
+  
+    const textComprar = screen.getByText('Comprar')
+
+    userEvent.click(textComprar);
+  
+    const inputEl = screen.getByTestId(/input-buy/i);
+
+    userEvent.type(inputEl, '1');
+  
+    const confirmar = screen.queryByRole('button', { name: 'Confirmar'});
+    userEvent.click(confirmar);
+
+    const message = screen.getByText(/compra feita com sucesso/i)
+    expect(message).toBeInTheDocument();
+    });
+
+    it('2. Verifica se não é possível fazer a compra - saldo insuficiente', async () => {
+    renderWithRouter(<BuyAndSell />);
+    
+    const textComprar = screen.getByText('Comprar')
+  
+    userEvent.click(textComprar);
+    
+    const inputEl = screen.getByTestId(/input-buy/i);
+  
+    userEvent.type(inputEl, '9');
+    
+    const confirmar = screen.queryByRole('button', { name: 'Confirmar'});
+    userEvent.click(confirmar);
+  
+    const message = screen.getByText(/saldo insuficente/i)
+    expect(message).toBeInTheDocument();
+  });
   /* it('2. Verifica se faz uma Venda de uma ação', () => {
       const { history } = renderWithRouter(<App />);
       history.push('/listActions');

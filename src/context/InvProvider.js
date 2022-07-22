@@ -5,7 +5,7 @@ import stockExchange from '../stockExchangeAPI';
 
 function InvProvider({ children }) {
   const [clients, setClients] = useState([]);
-  const [company, setCompany] = useState("");
+
   const [actions ,  setActions] = useState(stockExchange);
 
   useEffect(() => {
@@ -20,18 +20,11 @@ function InvProvider({ children }) {
     getUser();
   }, [setClients]);
 
-  const handleBuyAndSellButton = (e) => {
-    setCompany(e.target.value);
-    localStorage.setItem('company', JSON.stringify(e.target.value));
-  };
-  
-  
+
   const contextValue = {
     clients,
     actions,
     setActions,
-    company,
-    handleBuyAndSellButton,
   };
 
   return (

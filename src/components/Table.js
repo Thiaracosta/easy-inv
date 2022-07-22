@@ -1,16 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import invContext from '../context/invContext';
 import { useHistory } from 'react-router-dom';
 import './table.css'
 
 function Table(props) {
   const history = useHistory();
   const { isVisible, isVisibleButtons, dataTestid, dataTestidTr, actions } = props;
-  const { handleBuyAndSellButton } = useContext(invContext);
+ 
 
   const handleBuyAndSell = (e) => {
-    handleBuyAndSellButton(e);
+    const save = e.target.value;
+    const response = JSON.parse(localStorage.getItem('user'));
+    localStorage.setItem('user', JSON.stringify({ ...response, company: save,
+    }));
     history.push('/buyAndSell');
   }
 

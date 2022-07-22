@@ -4,6 +4,7 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import ListActions from '../pages/ListActions'
 import { mockLocalStorage } from './mockLocalStorage'
+import userEvent from '@testing-library/user-event';
 
 const { getItemMock } = mockLocalStorage();
 
@@ -62,7 +63,6 @@ describe('Testando a página de ListActions', () => {
     expect(btnCmyAction).toBeInTheDocument();
 
     const btnVmyAction = screen.getByTestId("buttonV-myActions-AMBEV")
-    expect(btnVmyAction).toBeInTheDocument();
-    
+    expect(btnVmyAction).toBeInTheDocument();    
   });
 });
