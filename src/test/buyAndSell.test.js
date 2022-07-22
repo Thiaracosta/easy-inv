@@ -83,7 +83,7 @@ describe('Testando a página BuyAndSell', () => {
     expect(message).toBeInTheDocument();
     });
 
-    it('2. Verifica se não é possível fazer a compra - saldo insuficiente', async () => {
+    it('3. Verifica se não é possível fazer a compra - saldo insuficiente', async () => {
     renderWithRouter(<BuyAndSell />);
     
     const textComprar = screen.getByText('Comprar')
@@ -100,42 +100,78 @@ describe('Testando a página BuyAndSell', () => {
     const message = screen.getByText(/saldo insuficente/i)
     expect(message).toBeInTheDocument();
   });
-  /* it('2. Verifica se faz uma Venda de uma ação', () => {
-      const { history } = renderWithRouter(<App />);
-      history.push('/listActions');
-  
-      const btnCAction = screen.getByTestId("buttonC-actions-ASSAI")
-  
-      userEvent.click(btnCAction);
-  
-      const inputEl = screen.getByTestId(/input-sell/i);
 
-  
-      const confirmar = screen.queryByRole('button', { name: 'Confirmar'});
-  
-      userEvent.type(inputEl, 1)
-      userEvent.click(confirmar)
-  
-      const message = screen.getByRole('heading', { level: 1, name: /Venda feita com sucesso/i})
-      expect(message).toBeInTheDocument();
-    });
-
-  it('3. Verifica se não faz uma Venda - quando não tem ações suficientes', () => {
-    const { history } = renderWithRouter(<App />);
-    history.push('/listActions');
+  it('4. Verifica se é possível fazer uma venda', async () => {
+    renderWithRouter(<BuyAndSell />);
     
-    const btnCAction = screen.getByTestId("buttonC-actions-ASSAI")
-    
-    userEvent.click(btnCAction);
+    const textComprar = screen.getByText('Comprar')
+  
+    userEvent.click(textComprar);
     
     const inputEl = screen.getByTestId(/input-sell/i);
+  
+    userEvent.type(inputEl, '1');
     
     const confirmar = screen.queryByRole('button', { name: 'Confirmar'});
-    
-    userEvent.type(inputEl, 2)
-    userEvent.click(confirmar)
-    
-    const message = screen.getByRole('heading', { level: 1, name: /Você não possui essa quantidade de ações/i})
+    userEvent.click(confirmar);
+  
+    const message = screen.getByText(/venda feita com sucesso/i)
     expect(message).toBeInTheDocument();
-  }); */
+  });
+
+  it('5. Verifica se não é possível fazer uma venda de mais ações que possui', async () => {
+    renderWithRouter(<BuyAndSell />);
+    
+    const textComprar = screen.getByText('Comprar')
+  
+    userEvent.click(textComprar);
+    
+    const inputEl = screen.getByTestId(/input-sell/i);
+  
+    userEvent.type(inputEl, '9');
+    
+    const confirmar = screen.queryByRole('button', { name: 'Confirmar'});
+    userEvent.click(confirmar);
+  
+    const message = screen.getByText(/você não possui essa quantidade de ações/i)
+    expect(message).toBeInTheDocument();
+  });
+
+  it('7. Verifica se não é possível fazer uma venda - se não possi essa ação', async () => {
+    getItemMock.mockReturnValue(JSON.stringify({
+      "account": 100,
+      "date": "2022-07-20T03:04:30.256Z",
+      "email": "thiara@gmail.com",
+      "myActions": [{ 
+          "company":"AMBEV",
+          "sector": "Alimentos",
+          "quantity": 1,
+          "price": 64.00,
+        },
+        { 
+          "company":"ASSAI",
+          "sector": "Varejo",
+          "quantity": 1,
+          "price": 52.00,
+        }],
+      "name": 'Usuário',
+      "company": 'AZUL',
+    })); 
+
+    renderWithRouter(<BuyAndSell />);
+    
+    const textComprar = screen.getByText('Comprar')
+  
+    userEvent.click(textComprar);
+    
+    const inputEl = screen.getByTestId(/input-sell/i);
+  
+    userEvent.type(inputEl, '1');
+    
+    const confirmar = screen.queryByRole('button', { name: 'Confirmar'});
+    userEvent.click(confirmar);
+  
+    const message = screen.getByText(/não possui nenhuma ação dessa companhia/i)
+    expect(message).toBeInTheDocument();
+  });
 });
