@@ -37,9 +37,9 @@ describe('Testando a página de ListActions', () => {
     expect(buttonSaldoEl).toBeInTheDocument();
     const buttonUsuarioEl = screen.getByRole('button', {name: 'Usuário:XPTO'});
     expect(buttonUsuarioEl).toBeInTheDocument();
-    const mylistaEl = screen.queryByRole('heading', { level: 3, name: 'Minhas Ações'});
+    const mylistaEl = screen.queryByRole('heading', { level: 3, name: 'Minhas Ações:'});
     expect(mylistaEl).toBeInTheDocument();
-    const actionsEl = screen.queryByRole('heading', { level: 3, name: 'Lista de Ações'});
+    const actionsEl = screen.queryByRole('heading', { level: 3, name: 'Disponíveis para investir:'});
     expect(actionsEl).toBeInTheDocument();
     const buttonContaEl = screen.getByRole('button', {name: 'Depósito/Retirada'});
     expect(buttonContaEl).toBeInTheDocument();
@@ -64,5 +64,6 @@ describe('Testando a página de ListActions', () => {
 
     const btnVmyAction = screen.getByTestId("buttonV-myActions-AMBEV")
     expect(btnVmyAction).toBeInTheDocument();
+    
   });
 });
