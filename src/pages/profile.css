@@ -1,5 +1,8 @@
-main {
+.main-profile{
   height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
 }
 .contanier-profile {
   display: flex;
@@ -14,13 +17,9 @@ main {
   color: aliceblue;
   width: 100%;
   text-align: center;
-  margin:70px 0px;
+  margin:50px 0px;
 }
 
 .input-profile {
   margin-bottom: 30px;
-}
-
-.button-profile {
-  height: 400px;
 }

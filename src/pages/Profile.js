@@ -33,7 +33,7 @@ function Profile() {
   }
 
   return (
-    <main>
+    <div className='main-profile'>
       <div className='h1-profile'>
         <h1>Atualize seus dados</h1>
       </div>
@@ -65,7 +65,7 @@ function Profile() {
       <Buttons
         className='button-profile'
         handleTransactionConfirm={handleUpdate} />
-    </main>
+    </div>
   );
 }
 

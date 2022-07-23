@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import Buttons from '../components/Buttons';
 import Header from '../components/Header';
 import Message from '../components/Message';
 import './account.css'
 
 function Account() {
-  const history = useHistory();
   const [transaction, setTransaction] = useState("");
   const [cashValue, setCashValue] = useState(0);
   const [isVisibleDeposit, setIsVisibleDeposit] = useState("btn-invisible-account");

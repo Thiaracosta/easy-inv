@@ -11,7 +11,6 @@ import './buyAndSell.css'
 
 function BuyAndSell() {
   const history = useHistory();
-  // const { actions } = useContext(invContext);
   const [actions ,  setActions] = useState(stockExchange);
   const [filterCompany, setFilterCompany] = React.useState([]);
   const [transaction, setTransaction] = useState({});
@@ -31,20 +30,19 @@ function BuyAndSell() {
   const [textMsg, setTextMsg] = useState("");
   
   useEffect(() => {
-    console.log('---------------', company);
-      const response = JSON.parse(localStorage.getItem('user'));
-      setFilterCompany(response.myActions);
+    const response = JSON.parse(localStorage.getItem('user'));
+    setFilterCompany(response.myActions);
       
-      const filterAction = myActions.filter((item) => item.company === company)
+    const filterAction = myActions.filter((item) => item.company === company)
+    setFilterCompany(filterAction);
+    if(filterAction.length === 0) {
+      const filter = actions.filter((item) => item.company === company);
+      const newAction = [{company: filter[0].company, quantity: 0, price: filter[0].price}]
+      setFilterCompany(newAction);
+    } else {
       setFilterCompany(filterAction);
-      if(filterAction.length === 0) {
-        const filter = actions.filter((item) => item.company === company);
-        const newAction = [{company: filter[0].company, quantity: 0, price: filter[0].price}]
-        setFilterCompany(newAction);
-      } else {
-        setFilterCompany(filterAction);
-        console.log('debug', filterCompany);
-      }
+      console.log('debug', filterCompany);
+    }
   }, []);
 
   const hadleValueType = (e) => {
@@ -132,7 +130,7 @@ function BuyAndSell() {
     <div className='main-buyAndSell'>
       <Header/>
         {visibleMsg ? <Message message={textMsg}/> : (
-          <section className='contanier-buyAndSell'>
+          <div className='contanier-buyAndSell'>
             <div className='card-table-buyAndSell'>
               <div>
                 <h1 className='title-buyAndSell-myActions' data-testId="h1-buyandSell" >Minhas Ações:</h1> 
@@ -166,11 +164,11 @@ function BuyAndSell() {
               />
             </div>
           </div>
-        </section>
-            )}
         <Buttons
           handleTransactionConfirm={ handleTransactionConfirm }
         />
+      </div>
+      )}
     </div>
   );
 }
