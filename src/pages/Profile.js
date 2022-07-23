@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Buttons from '../components/Buttons';
+import Graphic from '../components/Graphic';
 import './profile.css';
 
 function Profile() {
@@ -11,11 +12,13 @@ function Profile() {
   });
  // const [isVisible, setIsVisible] = useState(true);
   const [client, setClient] = useState([]);
+  const [myActions, setMyActions] = useState(() => JSON.parse(localStorage.getItem('user')).myActions);
 
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('user'));
     setClient(response);
     setUser({email: response.email})
+    setMyActions(response.myActions)
   }, []);
 
   const handleSaveInput = ({ target }) => {
@@ -62,6 +65,9 @@ function Profile() {
             />
         </label>
       </div>
+      <Graphic
+        myActions={myActions}
+      />
       <Buttons
         className='button-profile'
         handleTransactionConfirm={handleUpdate} />

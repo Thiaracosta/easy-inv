@@ -37,7 +37,7 @@ function BuyAndSell() {
     setFilterCompany(filterAction);
     if(filterAction.length === 0) {
       const filter = actions.filter((item) => item.company === company);
-      const newAction = [{company: filter[0].company, quantity: 0, price: filter[0].price}]
+      const newAction = [{company: filter[0].company, quantity: 0, price: filter[0].price, sector: filter[0].sector}]
       setFilterCompany(newAction);
     } else {
       setFilterCompany(filterAction);
