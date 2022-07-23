@@ -17,7 +17,7 @@ function App() {
         <Route exact path="/buyAndSell" component={ BuyAndSell } />
         <Route exact path="/account" component={ Account } />
         <Route exact path="/profile" component={ Profile } />
-        <Route exact path="" component={ Login } />
+        <Route exact path="/" component={ Login } />
         <Route path="/*" component={ NotFound } />
       </Switch>
     </InvProvider>
