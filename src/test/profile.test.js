@@ -2,36 +2,29 @@ import React from 'react';
 import "@testing-library/jest-dom/extend-expect";
 import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
-import ListActions from '../pages/ListActions'
 import { mockLocalStorage } from './mockLocalStorage'
 import userEvent from '@testing-library/user-event';
 import Profile from '../pages/Profile';
 
-const { getItemMock } = mockLocalStorage();
+const { getItemMock, setItemMock } = mockLocalStorage();
 
 describe('Testando a página de Perfil', () => {
 
-  it('1. Teste se existe os componentes na tela', () => {
+  beforeEach(() => {
     getItemMock.mockReturnValue(JSON.stringify({
-      "account": 0,
+      "account": 100,
       "date": "2022-07-20T03:04:30.256Z",
       "email": "thiara@gmail.com",
-      "myActions": [{ 
-          "company":"AMBEV",
-          "sector": "Alimentos",
-          "quantity": 1,
-          "price": 64.00,
-        },
-        { 
-          "company":"ASSAI",
-          "sector": "Varejo",
-          "quantity": 1,
-          "price": 52.00,
-        }],
+      "myActions": [],
       "name": 'Usuário',
-      "actions": [],
-    }));
-
+      "company": 'ASSAI',
+    }))}); 
+    
+    afterEach(() => {
+      localStorage.clear();
+    });
+    
+    it('1. Teste se existe os componentes na tela', () => {
     const { history } = renderWithRouter(<Profile />)
 
 		const h1ProfileEl = screen.getByRole('heading', { level: 1,  name: /atualize seus dados/i	})
@@ -50,7 +43,11 @@ describe('Testando a página de Perfil', () => {
 
 		userEvent.click(buttonConfirmarEl);
 
+    expect(setItemMock).toHaveBeenCalledWith('user', "{\"account\":100,\"date\":\"2022-07-20T03:04:30.256Z\",\"email\":\"thiara@gmail.com\",\"myActions\":[],\"name\":\"Thiara\",\"company\":\"ASSAI\"}");
+
 		expect(history.location.pathname).toBe('/listActions');
 
 	});
 });
+
+// https://stackoverflow.com/questions/32911630/how-do-i-deal-with-localstorage-in-jest-tests

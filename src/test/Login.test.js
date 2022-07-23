@@ -72,7 +72,7 @@ describe('Testando a página de Login', () => {
   
     userEvent.type(inputEmailEl, 'teste@teste.com');
     userEvent.type(inputSenhaEl, '123456');
-    userEvent.click(buttonEl)
+    userEvent.click(buttonEl);
 
     const mylistEl = screen.queryByRole('heading', { level: 3, name: 'Minhas Ações:'});
     expect(mylistEl).toBeInTheDocument();

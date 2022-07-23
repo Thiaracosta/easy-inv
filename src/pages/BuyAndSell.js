@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import Buttons from '../components/Buttons';
-import invContext from '../context/invContext';
 import Table from '../components/Table';
 import InputValue from '../components/InputValue';
 import Message from '../components/Message';

@@ -6,7 +6,7 @@ import ListActions from '../pages/ListActions'
 import { mockLocalStorage } from './mockLocalStorage'
 import userEvent from '@testing-library/user-event';
 
-const { getItemMock } = mockLocalStorage();
+const { getItemMock, setItemMock } = mockLocalStorage();
 
 describe('Testando a página de ListActions', () => {
 
@@ -63,6 +63,10 @@ describe('Testando a página de ListActions', () => {
     expect(btnCmyAction).toBeInTheDocument();
 
     const btnVmyAction = screen.getByTestId("buttonV-myActions-AMBEV")
-    expect(btnVmyAction).toBeInTheDocument();    
+    expect(btnVmyAction).toBeInTheDocument();
+
+    userEvent.click(btnCmyAction);
+
+    expect(setItemMock).toHaveBeenCalledWith('user', "{\"account\":0,\"date\":\"2022-07-20T03:04:30.256Z\",\"email\":\"thiara@gmail.com\",\"myActions\":[{\"company\":\"AMBEV\",\"sector\":\"Alimentos\",\"quantity\":1,\"price\":64},{\"company\":\"ASSAI\",\"sector\":\"Varejo\",\"quantity\":1,\"price\":52}],\"name\":\"Usuário:XPTO\",\"actions\":[],\"company\":\"AMBEV\"}");
   });
 });

@@ -15,7 +15,7 @@ function Profile() {
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('user'));
     setClient(response);
-    setUser({email: response.email, name: response.name})
+    setUser({email: response.email})
   }, []);
 
   const handleSaveInput = ({ target }) => {
@@ -25,7 +25,6 @@ function Profile() {
 
   const handleUpdate = () => {
     const { email, name } = user;
-    if (!email) history('/listActions');
     const response = localStorage.setItem('user', JSON.stringify({ ...client,
       name, email,
     }));

@@ -1,11 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import "@testing-library/jest-dom/extend-expect";
 import { mockLocalStorage } from './mockLocalStorage'
-import InvProvider from '../context/InvProvider';
-import ListActions from '../pages/ListActions';
+
 import BuyAndSell from '../pages/BuyAndSell';
 ;
 
@@ -114,6 +113,28 @@ describe('Testando a página BuyAndSell', () => {
     
     const confirmar = screen.queryByRole('button', { name: 'Confirmar'});
     userEvent.click(confirmar);
+
+    expect(JSON.parse(localStorage.getItem('user')))
+    .toStrictEqual({
+      "account": 100,
+      "company": "ASSAI",
+      "date": "2022-07-20T03:04:30.256Z",
+      "email": "thiara@gmail.com",
+      "myActions": [{
+        "company": "AMBEV",
+        "price": 64,
+        "quantity": 1,
+        "sector": "Alimentos",
+      },
+      {
+        "company": "ASSAI",
+        "price": 52,
+        "quantity": 1,
+        "sector": "Varejo",
+      },
+    ],
+    "name": "Usuário",
+    });
   
     const message = screen.getByText(/venda feita com sucesso/i)
     expect(message).toBeInTheDocument();
