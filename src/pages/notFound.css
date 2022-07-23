@@ -1,6 +1,6 @@
 .main-notfount {
   height: 100vh;
-  background-color: #001e3e;
+  background-color: #012340;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -8,5 +8,5 @@
 }
 
 .img-notFount {
-  width: 100%;
+  width: 90%;
 }
