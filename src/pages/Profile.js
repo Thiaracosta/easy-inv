@@ -15,11 +15,7 @@ function Profile() {
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('user'));
     setClient(response);
-    if (response === null) {
-      localStorage.setItem('user', JSON.stringify([]));
-      setUser({email: '', nome: '' })
-    }
-    setUser({email: response.email, name: ''})
+    setUser({email: response.email, name: response.name})
   }, []);
 
   const handleSaveInput = ({ target }) => {
@@ -34,7 +30,6 @@ function Profile() {
       name, email,
     }));
     setClient(response);
-    alert("Atualização feita com sucesso!")
     history.push('/listActions');
   }
 
