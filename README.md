@@ -52,9 +52,12 @@ As seguintes ferramentas foram usadas na construção do projeto:
 ## 📣 Informações gerais:
 
 Nesse desafio tentei um formato onde se possa ser utilizado em vários tipo de telas:
-
-#### gifs
-
+<br />
+<div align="center">
+<img src="https://user-images.githubusercontent.com/93009897/180660506-ddf26ca7-8172-415a-b70c-12c1e7773b4b.png" width="600px" style='border-radius:5%;'/>
+<img src="https://user-images.githubusercontent.com/93009897/180660599-3d996141-a45c-4b21-afb7-23599a160e5b.png" width="600px" style='border-radius:5%;'/>
+</div>
+<br />
 As principais ferramentas que utilizei foram o React Hooks e para testes Testing Library, a baixo mostra mais informações:
 
 - React Hooks:
