@@ -27,7 +27,7 @@ describe('Testando a página de Perfil', () => {
     it('1. Teste se existe os componentes na tela', () => {
     const { history } = renderWithRouter(<Profile />)
 
-		const h1ProfileEl = screen.getByRole('heading', { level: 1,  name: /atualize seus dados/i	})
+		const h1ProfileEl = screen.getByRole('heading', { level: 1,  name: /perfil/i	})
 		expect(h1ProfileEl).toBeInTheDocument();
 
 		const inputEmailEl = screen.getByPlaceholderText(/e-mail/i);
@@ -50,4 +50,48 @@ describe('Testando a página de Perfil', () => {
 	});
 });
 
+describe('Testando o componente graphic', () => {
+
+  beforeEach(() => {
+    getItemMock.mockReturnValue(JSON.stringify({
+      "account": 100,
+      "date": "2022-07-20T03:04:30.256Z",
+      "email": "thiara@gmail.com",
+      "myActions": [
+        { 
+          company:"AMBEV",
+          sector: "Alimentos",
+          quantity: 10,
+          price: 64.00,
+        },
+        { 
+          company:"ASSAI",
+          sector: "Varejo",
+          quantity: 6,
+          price: 52.00,
+        },
+        { 
+          company:"AZUL",
+          sector: "Companhia aérea",
+          quantity: 3,
+          price: 52.00,
+        },
+      ],
+      "name": 'Usuário',
+      "company": 'ASSAI',
+    }))}); 
+    
+    afterEach(() => {
+      localStorage.clear();
+    });
+
+    it('1. Teste se existe componente do titulo do gráfico', () => {
+      renderWithRouter(<Profile />)
+      const h3TitleGraphicEl = screen.getByText(/Distribuição/i)
+		  expect(h3TitleGraphicEl).toBeInTheDocument();
+    });
+  });
+
+// REFERÊNCIA 
+// Para fazer o mock fo localStorange utilizei o link:
 // https://stackoverflow.com/questions/32911630/how-do-i-deal-with-localstorage-in-jest-tests

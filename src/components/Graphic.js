@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Chart } from "react-google-charts";
 import _ from 'lodash';
-import PropTypes from 'prop-types';
 
-import './Graphic.css'
+import './graphic.css'
 
-function Graphic(props) {
+function Graphic() {
   const [myActions, setMyActions] = useState(() => JSON.parse(localStorage.getItem('user')).myActions);
   const [dadosGraphic, setDadosGraphic] = useState([]);
 
@@ -24,9 +23,9 @@ function Graphic(props) {
 
   return (
     <div>
-      {dadosGraphic !== [] && (
-        <div>
-          <h2 className='title-graphic'>Distribuição das ações em sua carteira</h2>
+      <div className='contanier-graphic'>
+        <h4 className='title-graphic'>Distribuição das ações em sua carteira</h4>
+        <div className='card-graphic'>
           <Chart
             chartType="PieChart"
             data={ dadosGraphic }
@@ -34,14 +33,14 @@ function Graphic(props) {
             heigth={"100px"}
           />
         </div>
-      )}
+      </div>
     </div>
   )
  
 }
 
-Graphic.propTypes = {
-  myActions:PropTypes.array,
-}.isRequired;
-
 export default Graphic;
+
+// REFERÊNCIAS
+// Para a eleboração do gráfico segui os passos do video:
+// https://www.youtube.com/watch?v=pmHr1xKH4hM&feature=youtu.be

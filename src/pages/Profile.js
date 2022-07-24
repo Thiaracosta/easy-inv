@@ -18,7 +18,7 @@ function Profile() {
     const response = JSON.parse(localStorage.getItem('user'));
     setClient(response);
     setUser({email: response.email})
-    setMyActions(response.myActions)
+    setMyActions(response.myActions);
   }, []);
 
   const handleSaveInput = ({ target }) => {
@@ -38,7 +38,7 @@ function Profile() {
   return (
     <div className='main-profile'>
       <div className='h1-profile'>
-        <h1>Atualize seus dados</h1>
+        <h1>Perfil</h1>
       </div>
       <div  className='contanier-profile'>
         <label htmlFor='email' >
@@ -65,9 +65,12 @@ function Profile() {
             />
         </label>
       </div>
-      <Graphic
-        myActions={myActions}
-      />
+      {myActions.length > 0 ? (
+        <Graphic
+          myActions={myActions}
+        />
+      ): <div className='div-profile'></div>
+      }
       <Buttons
         className='button-profile'
         handleTransactionConfirm={handleUpdate} />

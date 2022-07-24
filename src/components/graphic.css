@@ -1,3 +1,16 @@
+.contanier-graphic{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
 .title-graphic {
-  
+  text-justify: center;
+  text-align: center;
+  margin: 2px;
+}
+.card-graphic{
+  display: flex;
+  justify-content: center;
 }
