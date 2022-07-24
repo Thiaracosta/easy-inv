@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import invContext from './invContext';
-import stockExchange from '../stockExchangeAPI';
+import stockExchange from '../utils/stockExchangeAPI';
 
 function InvProvider({ children }) {
   const [clients, setClients] = useState([]);

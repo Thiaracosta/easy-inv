@@ -41,7 +41,6 @@ function BuyAndSell() {
       setFilterCompany(newAction);
     } else {
       setFilterCompany(filterAction);
-      console.log('debug', filterCompany);
     }
   }, []);
 
