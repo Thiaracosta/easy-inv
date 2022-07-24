@@ -16,7 +16,7 @@ function Profile() {
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('user'));
     setClient(response);
-    setUser({email: response.email})
+    setUser({email: response.email, name: response.name})
     setMyActions(response.myActions);
   }, []);
 
