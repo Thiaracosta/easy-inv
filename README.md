@@ -15,9 +15,9 @@
 
 ## 📄 Descrição
 
-Ele consite na compra e venda de ações de uma forma mais simplificada.
+Ele consite em simular a compra e venda de ações de uma forma mais simplificada.
 
-A partir de um login feito na aplicação, você pode:
+A partir de um login feito na aplicação, você pode simular:
 
 - depositar o dinheiro
 
@@ -27,7 +27,7 @@ A partir de um login feito na aplicação, você pode:
 
 - retirar o dinheiro
 
-- vizualizar como está a distribuição de setores da sua carteira
+- vizualizar como está a distribuição de setores na sua carteira
 
 #### colocar gif
 
@@ -35,7 +35,7 @@ A partir de um login feito na aplicação, você pode:
 
 ### 🛠 Tecnologias
 
-As seguintes ferramentas foram usadas na construção do projeto:
+As ferramentas usadas na construção do projeto foram as seguintes:
 
 - [Node.js](https://nodejs.org/en/)
 
@@ -51,25 +51,25 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 ## 📣 Informações gerais:
 
-Nesse desafio tentei um formato onde se possa ser utilizado em vários tipo de telas:
+Neste desafio tentei implementar vários tamanhos de tela, como podem ver a seguir:
 <br />
 <div align="center">
 <img src="https://user-images.githubusercontent.com/93009897/180660506-ddf26ca7-8172-415a-b70c-12c1e7773b4b.png" width="600px" style='border-radius:5%;'/>
 <img src="https://user-images.githubusercontent.com/93009897/180660599-3d996141-a45c-4b21-afb7-23599a160e5b.png" width="600px" style='border-radius:5%;'/>
 </div>
 <br />
-As principais ferramentas que utilizei foram o React Hooks e para testes Testing Library, a baixo mostra mais informações:
+As principais ferramentas que utilizei foram o React Hooks e Testing Library, a baixo mostra mais informações:
 
 - React Hooks:
-  Resolvi utilizar por me identificar melhor com o método e pelo tamanho da aplicação como é pequena e não preciso de compartilhar muitas informações entre as páginas eu não vi a necessidade de usar o Redux;
+  Resolvi utilizar porque me identifico melhor com o método e pelo tamanho da aplicação, como é pequena e não preciso de compartilhar muitas informações entre as páginas, eu não vi a necessidade de usar o Redux;
 - Testing Library:
-  Sabendo da importância dos testes de uma aplicação, utilizei essa biblioteca por tem um breve conhecimento técnico, e ainda ela me possibilita a testar cada componente da aplicação.
+  Sabendo da importância dos testes de uma aplicação, utilizei essa biblioteca por tem um breve conhecimento técnico, e ainda ela me possibilitar a testar cada componente da aplicação.
 - React Google Charts:
-  Achei importante mostrar como a carteira de investimentos está distribuída por setor, a forma mais simples de vizualização, que encontrei, foi fazer um gráfico de pizza, essa bibliote me permitiu fazer esse gráfico de forma mais simples e rápida.
+  Achei importante mostrar como a carteira de investimentos está distribuída por setor e a forma mais simples de vizualização que encontrei foi fazer um gráfico de pizza. Essa bibliote me permitiu fazer esse gráfico de forma mais simples e rápida.
 - Lodash:
-  Utilizei o Lodash porque ele me facilitou muito para a criação dos dados do formato que o gráfico necessitava.
+  Utilizei o Lodash porque é uma ferramenta prática, que possibilitou a criação do formato dos dados que o gráfico necessitava.
 - Coverage:
-  Sobre a cobertura de testes, eu optei por fazer uma cobertura de 80% dos componetes e páginas.
+  Sobre a cobertura de testes, eu optei por fazer uma cobertura de no mínimo 80% dos componetes e páginas.
 
 <br/>
 
