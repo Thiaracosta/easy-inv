@@ -10,7 +10,6 @@
 > Status: Concluído ✅
 
 > Esse projeto foi elaborado para o Desafio Técnico Turma XP-Trybe.
-
 <br />
 
 ## 📄 Descrição
