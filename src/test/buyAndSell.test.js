@@ -96,7 +96,7 @@ describe('Testando a página BuyAndSell', () => {
     const confirmar = screen.queryByRole('button', { name: 'Confirmar'});
     userEvent.click(confirmar);
   
-    const message = screen.getByText(/saldo insuficente/i)
+    const message = screen.getByText(/saldo insuficiente/i)
     expect(message).toBeInTheDocument();
   });
 

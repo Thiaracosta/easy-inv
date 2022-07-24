@@ -53,7 +53,7 @@ function Account() {
     }
 
     if (transaction === "") {
-      setTextMsg("Marque a transação que quer fazer");
+      setTextMsg("Marque a transação que deseja fazer");
       return setVisibleMsg(true);
     }
     
@@ -74,7 +74,7 @@ function Account() {
     }
     if (transaction === 'withdrawal') {
       if(cashValueNumber > clientAccount) {
-        setTextMsg("Saldo insuficente");
+        setTextMsg("Saldo insuficiente");
         return setVisibleMsg(true);
       } else {
         const balance = clientAccount - cashValueNumber;

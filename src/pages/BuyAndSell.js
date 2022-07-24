@@ -68,7 +68,7 @@ function BuyAndSell() {
 
     if (type === "Comprar") {
       if(amount > clientAccount || clientAccount === 0) {
-        setTextMsg("Saldo insuficente");
+        setTextMsg("Saldo insuficiente");
         return setVisibleMsg(true);
       } else {
         const balance = clientAccount - amount;

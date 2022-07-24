@@ -9,7 +9,7 @@ import { mockLocalStorage } from './mockLocalStorage'
 const { getItemMock } = mockLocalStorage();
 
 describe('Testando a página de Account', () => {
- it('1. Teste se existe os componentes na tela', () => {
+  it('1. Teste se existe os componentes na tela', () => {
   getItemMock.mockReturnValue(JSON.stringify({
     "account": 0,
     "date": "2022-07-20T03:04:30.256Z",
@@ -126,7 +126,7 @@ describe('Testando a página de Account', () => {
 
     userEvent.click(buttonSaldoEl);
 
-    const message = screen.getByRole('heading', { level: 1, name: /Saldo insuficente/i})
+    const message = screen.getByRole('heading', { level: 1, name: /Saldo insuficiente/i})
     expect(message).toBeInTheDocument();
   });
 
