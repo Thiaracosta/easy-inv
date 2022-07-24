@@ -112,11 +112,15 @@ $ npm run test
 $  npm run test-coverage
 ```
 
-#### 👀 quer ver a aplicação rodando:
+#### 👀  quer ver a aplicação rodando:
+<br/>
 
-- deploy
-
-
+<div>
+  <a href="https://easy-inv.herokuapp.com/" target="_blank">
+  🌟 Playground aqui 🌟
+  </a>
+</div>
+<br/>
 <br/>
 
 ### 👩 Autora
