@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import Table from '../components/Table';
 import { useHistory } from 'react-router-dom';
 import './listActions.css'
-import stockExchange from '../stockExchangeAPI';
+import stockExchange from '../utils/stockExchangeAPI';
 
 function ListActions() {
   const history = useHistory();

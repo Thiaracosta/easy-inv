@@ -10,7 +10,6 @@ function Profile() {
     email: '',
     name: '',
   });
- // const [isVisible, setIsVisible] = useState(true);
   const [client, setClient] = useState([]);
   const [myActions, setMyActions] = useState(() => JSON.parse(localStorage.getItem('user')).myActions);
 

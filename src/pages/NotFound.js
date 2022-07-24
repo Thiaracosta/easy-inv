@@ -1,5 +1,5 @@
 import React from 'react';
-import error404 from '../erro.png'
+import error404 from '../images/erro.png'
 import './notFound.css'
 
 function NotFound() {

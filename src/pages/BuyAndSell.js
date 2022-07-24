@@ -5,7 +5,7 @@ import Buttons from '../components/Buttons';
 import Table from '../components/Table';
 import InputValue from '../components/InputValue';
 import Message from '../components/Message';
-import stockExchange from '../stockExchangeAPI';
+import stockExchange from '../utils/stockExchangeAPI';
 
 import './buyAndSell.css'
 

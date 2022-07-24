@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import logo from '../logo.svg';
+import logo from '../images/logo.svg';
 import './login.css'
 
 function Login() {
