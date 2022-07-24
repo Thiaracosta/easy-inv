@@ -28,7 +28,9 @@ A partir de um login feito na aplicação, você pode simular:
 
 - vizualizar como está a distribuição de setores na sua carteira
 
-#### colocar gif
+<div align="center">
+  <img src="./src/images/app-easy.gif" width="700px" style='border-radius:5%;'/>
+</div>
 
 <br/>
 
