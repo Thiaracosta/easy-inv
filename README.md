@@ -81,11 +81,11 @@ Você precisa ter instalado na sua máquina as seguintes ferramentas: Git, Node.
 
 - clonar este repositório
 ```bash
-$ git clone
+$ git clone git@github.com:Thiaracosta/easy-inv.git
 ```
 - acesse a pasta do projeto no terminal
 ```bash
-$ cd
+$ cd easy-inv
 ```
 - instale as dependências
 ```bash
