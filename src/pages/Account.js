@@ -92,7 +92,7 @@ function Account() {
     <div className='contanier-account'>
     <Header/>
     {visibleMsg ? <Message message={textMsg} /> : (
-      <div>
+      <div className='contanier-elements'>
       <div className='card-h1-account'>
         <p>Saldo em conta:  R${clientAccount.toFixed(2)}</p>
       </div>
